@@ -1,6 +1,18 @@
-# template-react (React TypeScript Starter Template)
+# bit-task
+Test task for «ООО "БИТ"»
 
-This starter template is designed for building modern React applications with TypeScript. It includes pre-configured settings for Webpack, ESLint, Stylelint, Jest.
+## Overview
+Implement the first screen of the admin panel UI to display a user list with search and sorting features. Clicking on a user reveals a side drawer with a 24-hour expense chart and a transaction log.
+
+## Key Features
+- **User List Display:**
+  - Present users in a table with search functionality.
+- **Sorting by Token Count:**
+  - Sort users based on token count for effective management.
+- **User Detail Drawer:**
+  - Clicking on a user opens a side drawer with a 24-hour expense chart.
+- **Transaction Log:**
+  - Display a user's transaction log for detailed financial insights.
 
 ## Features
 
@@ -116,5 +128,4 @@ With npm:
 
 ### License
 
-This project is licensed under the MIT License - see the LICENSE.md file for details.
-
+This project is licensed under the GNU General Public License - see the LICENSE.md file for details.
