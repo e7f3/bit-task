@@ -17,6 +17,7 @@ Implement the first screen of the admin panel UI to display a user list with sea
 ## Technology Stack
 
 - React with TypeScript
+- Redux Toolkit for state management
 - Webpack for bundling and build optimizations
 - ESLint for JavaScript and TypeScript code linting
 - Stylelint for CSS code linting
