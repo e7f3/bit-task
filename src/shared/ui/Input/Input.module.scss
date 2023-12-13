@@ -1,0 +1,128 @@
+.Label {
+  margin-bottom: 8px;
+
+  color: var(--color-white);
+  font: var(--input-medium-font);
+}
+
+.Badge {
+  position: absolute;
+  top: 50%;
+
+  width: 16px;
+  height: 16px;
+
+  // fill: var(--color-gray-1);
+  transform: translateY(-50%);
+}
+
+.Badge path {
+  fill: var(--color-gray-1);
+
+  transition: all 0.2s ease-in;
+}
+
+.BadgeLeft {
+  left: 16px;
+}
+
+.BadgeRight {
+  right: 16px;
+}
+
+.ErrorText {
+  margin-top: 8px;
+
+  color: var(--color-critical);
+  font: var(--input-medium-font);
+}
+
+.InputWrapper {
+  position: relative;
+}
+
+.Input {
+  width: 100%;
+  padding: 14px 16px;
+
+  color: var(--color-gray-1);
+  font: var(--input-small-font);
+
+  border: 1px solid var(--color-gray-2);
+  border-radius: 8px;
+
+  background-color: var(--color-gray-4);
+
+  transition: all 0.2s ease-in;
+}
+
+.Input.HasBadgeLeft {
+  padding-left: 42px;
+}
+
+.Input.HasBadgeRight {
+  padding-right: 42px;
+}
+
+.Input:placeholder-shown {
+  color: var(--color-gray-1);
+  font: var(--input-small-font);
+}
+
+.Input:invalid {
+  color: var(--color-white);
+
+  border-color: var(--color-critical);
+
+  background-color: var(--color-gray-2);
+}
+
+.Input:invalid + .Badge path {
+  fill: var(--color-white);
+}
+
+.Input:hover {
+  border-color: var(--color-primary);
+}
+
+.Input:hover + .Badge path {
+  fill: var(--color-white);
+}
+
+.Input:focus {
+  color: var(--color-white);
+
+  border-color: var(--color-primary);
+
+  background-color: var(--color-gray-2);
+
+  outline: none;
+}
+
+.Input:focus + .Badge path {
+  fill: var(--color-white);
+}
+
+.Input:active {
+  color: var(--color-white);
+
+  border-color: var(--color-primary);
+
+  background-color: var(--color-gray-2);
+}
+
+.Input:active + .Badge path {
+  fill: var(--color-white);
+}
+
+.Input:disabled {
+  color: var(--color-gray-1);
+
+  border-color: var(--color-gray-1);
+
+  background-color: var(--color-gray-3);
+}
+
+.Input:disabled + .Badge path {
+  fill: var(--color-gray-1);
+}

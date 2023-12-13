@@ -1,0 +1,4 @@
+.eslintrc.js
+.fttemplates/**/*.{js,jsx,ts,tsx}
+stylelint.config.js
+```

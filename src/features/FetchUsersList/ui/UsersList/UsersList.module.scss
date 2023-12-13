@@ -1,0 +1,39 @@
+.UsersList {
+  display: grid;
+  grid-template-columns: 1fr max-content;
+
+  overflow-x: auto;
+}
+
+.UsersListHead {
+  grid-column: 1 / -1;
+
+  display: grid;
+  grid-template-columns: subgrid;
+}
+
+.UsersListItem {
+  grid-column: 1 / -1;
+
+  display: grid;
+  grid-template-columns: subgrid;
+}
+
+.UserInfo {
+  grid-column: 1 / -1;
+
+  display: grid;
+  grid-template-columns: subgrid;
+}
+
+@media only screen and (min-width: 834px) {
+  .UsersList {
+    grid-template-columns: 1fr max-content max-content max-content max-content max-content;
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  .UsersList {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}

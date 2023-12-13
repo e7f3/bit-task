@@ -1,0 +1,318 @@
+:root {
+  // Font families
+  --font-family: 'IBM Plex Sans', sans-serif;
+
+  // Font sizes
+  // Mobile
+  --paragraph-xs-mobile: 10px;
+  --paragraph-s-mobile: 12px;
+  --paragraph-m-mobile: 14px;
+  --paragraph-xl-mobile: 18px;
+  --paragraph-xxl-mobile: 20px;
+  --header-6-mobile: 16px;
+  --header-5-mobile: 18px;
+  --header-4-mobile: 20px;
+  --header-3-mobile: 22px;
+  --header-2-mobile: 24px;
+  --header-1-mobile: 28px;
+
+  // Tablet
+  --paragraph-xs-tablet: 10px;
+  --paragraph-s-tablet: 12px;
+  --paragraph-m-tablet: 14px;
+  --paragraph-xl-tablet: 20px;
+  --paragraph-xxl-tablet: 22px;
+  --header-6-tablet: 18px;
+  --header-5-tablet: 20px;
+  --header-4-tablet: 22px;
+  --header-3-tablet: 30px;
+  --header-2-tablet: 34px;
+  --header-1-tablet: 40px;
+
+  // Desktop
+  --paragraph-xs-desktop: 12px;
+  --paragraph-s-desktop: 14px;
+  --paragraph-m-desktop: 16px;
+  --paragraph-xl-desktop: 22px;
+  --paragraph-xxl-desktop: 26px;
+  --header-6-desktop: 18px;
+  --header-5-desktop: 22px;
+  --header-4-desktop: 26px;
+  --header-3-desktop: 30px;
+  --header-2-desktop: 34px;
+  --header-1-desktop: 46px;
+
+  // Button
+  --button-small: 15px;
+  --button-medium: 18px;
+
+  // Input
+  --input-small: 14px;
+  --input-medium: 16px;
+
+  // Font weights
+  --regular: 400;
+  --medium: 500;
+  --semi-bold: 600;
+  --bold: 700;
+
+  //  Line heights
+  // Mobile
+  --paragraph-lh-xs-mobile: 16px;
+  --paragraph-lh-s-mobile: 16px;
+  --paragraph-lh-m-mobile: 18px;
+  --paragraph-lh-xl-mobile: 24px;
+  --paragraph-lh-xxl-mobile: 26px;
+  --header-lh-6-mobile: 22px;
+  --header-lh-5-mobile: 24px;
+  --header-lh-4-mobile: 26px;
+  --header-lh-3-mobile: 30px;
+  --header-lh-2-mobile: 32px;
+  --header-lh-1-mobile: 36px;
+
+  // Tablet
+  --paragraph-lh-xs-tablet: 16px;
+  --paragraph-lh-s-tablet: 16px;
+  --paragraph-lh-m-tablet: 18px;
+  --paragraph-lh-xl-tablet: 26px;
+  --paragraph-lh-xxl-tablet: 30px;
+  --header-lh-6-tablet: 24px;
+  --header-lh-5-tablet: 26px;
+  --header-lh-4-tablet: 30px;
+  --header-lh-3-tablet: 34px;
+  --header-lh-2-tablet: 40px;
+  --header-lh-1-tablet: 52px;
+
+  // Desktop
+  --paragraph-lh-xs-desktop: 16px;
+  --paragraph-lh-s-desktop: 18px;
+  --paragraph-lh-m-desktop: 22px;
+  --paragraph-lh-xl-desktop: 29px;
+  --paragraph-lh-xxl-desktop: 34px;
+  --header-lh-6-desktop: 24px;
+  --header-lh-5-desktop: 30px;
+  --header-lh-4-desktop: 34px;
+  --header-lh-3-desktop: 40px;
+  --header-lh-2-desktop: 44px;
+  --header-lh-1-desktop: 60px;
+
+  // Button
+  --button-small-lh: 20px;
+  --button-medium-lh: 24px;
+
+  // Input
+  --input-small-lh: 18px;
+  --input-medium-lh: 22px;
+
+  // Fonts
+  // Mobile
+  --body-xs-regular-mobile: var(--regular)
+    var(--paragraph-xs-mobile) / var(--paragraph-lh-xs-mobile)
+    var(--font-family);
+  --body-s-medium-mobile: var(--medium)
+    var(--paragraph-s-mobile) / var(--paragraph-lh-s-mobile)
+    var(--font-family);
+  --body-m-regular-mobile: var(--regular)
+    var(--paragraph-m-mobile) / var(--paragraph-lh-m-mobile)
+    var(--font-family);
+  --body-m-medium-mobile: var(--medium)
+    var(--paragraph-m-mobile) / var(--paragraph-lh-m-mobile)
+    var(--font-family);
+  --body-m-semibold-mobile: var(--semi-bold)
+    var(--paragraph-m-mobile) / var(--paragraph-lh-m-mobile)
+    var(--font-family);
+  --body-xl-semibold-mobile: var(--semi-bold)
+    var(--paragraph-xl-mobile) / var(--paragraph-lh-xl-mobile)
+    var(--font-family);
+  --body-xxl-semibold-mobile: var(--semi-bold)
+    var(--paragraph-xxl-mobile) / var(--paragraph-lh-xxl-mobile)
+    var(--font-family);
+  --h6-semibold-mobile: var(--semi-bold)
+    var(--header-6-mobile) / var(--header-lh-6-mobile)
+    var(--font-family);
+  --h5-semibold-mobile: var(--semi-bold)
+    var(--header-5-mobile) / var(--header-lh-5-mobile)
+    var(--font-family);
+  --h4-semibold-mobile: var(--semi-bold)
+    var(--header-4-mobile) / var(--header-lh-4-mobile)
+    var(--font-family);
+  --h3-semibold-mobile: var(--semi-bold)
+    var(--header-3-mobile) / var(--header-lh-3-mobile)
+    var(--font-family);
+  --h2-semibold-mobile: var(--semi-bold)
+    var(--header-2-mobile) / var(--header-lh-2-mobile)
+    var(--font-family);
+  --h1-bold-mobile: var(--bold)
+    var(--header-1-mobile) / var(--header-lh-1-mobile)
+    var(--font-family);
+
+  // Tablet
+  --body-xs-regular-tablet: var(--regular)
+    var(--paragraph-xs-tablet) / var(--paragraph-lh-xs-tablet)
+    var(--font-family);
+  --body-s-medium-tablet: var(--medium)
+    var(--paragraph-s-tablet) / var(--paragraph-lh-s-tablet)
+    var(--font-family);
+  --body-m-regular-tablet: var(--regular)
+    var(--paragraph-m-tablet) / var(--paragraph-lh-m-tablet)
+    var(--font-family);
+  --body-m-medium-tablet: var(--medium)
+    var(--paragraph-m-tablet) / var(--paragraph-lh-m-tablet)
+    var(--font-family);
+  --body-m-semibold-tablet: var(--semi-bold)
+    var(--paragraph-m-tablet) / var(--paragraph-lh-m-tablet)
+    var(--font-family);
+  --body-xl-semibold-tablet: var(--semi-bold)
+    var(--paragraph-xl-tablet) / var(--paragraph-lh-xl-tablet)
+    var(--font-family);
+  --body-xxl-semibold-tablet: var(--semi-bold)
+    var(--paragraph-xxl-tablet) / var(--paragraph-lh-xxl-tablet)
+    var(--font-family);
+  --h6-semibold-tablet: var(--semi-bold)
+    var(--header-6-tablet) / var(--header-lh-6-tablet)
+    var(--font-family);
+  --h5-semibold-tablet: var(--semi-bold)
+    var(--header-5-tablet) / var(--header-lh-5-tablet)
+    var(--font-family);
+  --h4-semibold-tablet: var(--semi-bold)
+    var(--header-4-tablet) / var(--header-lh-4-tablet)
+    var(--font-family);
+  --h3-semibold-tablet: var(--semi-bold)
+    var(--header-3-tablet) / var(--header-lh-3-tablet)
+    var(--font-family);
+  --h2-semibold-tablet: var(--semi-bold)
+    var(--header-2-tablet) / var(--header-lh-2-tablet)
+    var(--font-family);
+  --h1-bold-tablet: var(--bold)
+    var(--header-1-tablet) / var(--header-lh-1-tablet)
+    var(--font-family);
+
+  // Desktop
+  --body-xs-regular-desktop: var(--regular)
+    var(--paragraph-xs-desktop) / var(--paragraph-lh-xs-desktop)
+    var(--font-family);
+  --body-s-medium-desktop: var(--medium)
+    var(--paragraph-s-desktop) / var(--paragraph-lh-s-desktop)
+    var(--font-family);
+  --body-m-regular-desktop: var(--regular)
+    var(--paragraph-m-desktop) / var(--paragraph-lh-m-desktop)
+    var(--font-family);
+  --body-m-medium-desktop: var(--medium)
+    var(--paragraph-m-desktop) / var(--paragraph-lh-m-desktop)
+    var(--font-family);
+  --body-m-semibold-desktop: var(--semi-bold)
+    var(--paragraph-m-desktop) / var(--paragraph-lh-m-desktop)
+    var(--font-family);
+  --body-xl-semibold-desktop: var(--semi-bold)
+    var(--paragraph-xl-desktop) / var(--paragraph-lh-xl-desktop)
+    var(--font-family);
+  --body-xxl-semibold-desktop: var(--semi-bold)
+    var(--paragraph-xxl-desktop) / var(--paragraph-lh-xxl-desktop)
+    var(--font-family);
+  --h6-semibold-desktop: var(--semi-bold)
+    var(--header-6-desktop) / var(--header-lh-6-desktop)
+    var(--font-family);
+  --h5-semibold-desktop: var(--semi-bold)
+    var(--header-5-desktop) / var(--header-lh-5-desktop)
+    var(--font-family);
+  --h4-semibold-desktop: var(--semi-bold)
+    var(--header-4-desktop) / var(--header-lh-4-desktop)
+    var(--font-family);
+  --h3-semibold-desktop: var(--semi-bold)
+    var(--header-3-desktop) / var(--header-lh-3-desktop)
+    var(--font-family);
+  --h2-semibold-desktop: var(--semi-bold)
+    var(--header-2-desktop) / var(--header-lh-2-desktop)
+    var(--font-family);
+  --h1-bold-desktop: var(--bold)
+    var(--header-1-desktop) / var(--header-lh-1-desktop)
+    var(--font-family);
+
+  // Current breakpoint
+  --body-xs-regular: var(--body-xs-regular-mobile);
+  --body-s-medium: var(--body-s-medium-mobile);
+  --body-m-regular: var(--body-m-regular-mobile);
+  --body-m-medium: var(--body-m-medium-mobile);
+  --body-m-semibold: var(--body-m-semibold-mobile);
+  --body-xl-semibold: var(--body-xl-semibold-mobile);
+  --body-xxl-semibold: var(--body-xxl-semibold-mobile);
+  --h6-semibold: var(--h6-semibold-mobile);
+  --h5-semibold: var(--h5-semibold-mobile);
+  --h4-semibold: var(--h4-semibold-mobile);
+  --h3-semibold: var(--h3-semibold-mobile);
+  --h2-semibold: var(--h2-semibold-mobile);
+  --h1-bold: var(--h1-bold-mobile);
+  --button-small-font: var(--medium)
+    var(--button-small) / var(--button-small-lh) var(--font-family);
+  --button-medium-font: var(--medium)
+    var(--button-medium) / var(--button-medium-lh) var(--font-family);
+  --input-small-font: var(--regular)
+    var(--input-small) / var(--input-small-lh) var(--font-family);
+  --input-medium-font: var(--regular)
+    var(--input-medium) / var(--input-medium-lh) var(--font-family);
+
+  // Colors
+  // Base
+  --color-white: #fff;
+  --color-black: #0e0c15;
+
+  // Accent
+  --color-primary: #1c64f2;
+  --color-primary-light: #4785ff;
+  --color-strong: #073ca4;
+  --color-strong-down: #0e3176;
+
+  // Gray scale
+  --color-gray-1: #616d8d;
+  --color-gray-2: #313e62;
+  --color-gray-3: #222b44;
+  --color-gray-4: #121825;
+  --color-gray-5: #374151;
+  --color-gray-6: #9ca3af;
+
+  // Other
+  --color-critical: #fe4242;
+  --color-gradient-1: var(--color-primary);
+  --color-gradient-2: #d41cf2;
+  --premium-gradient: linear-gradient(
+    90deg,
+    var(--color-gradient-1) 0%,
+    var(--color-gradient-2) 100%
+  );
+}
+
+@media only screen and (min-width: 834px) {
+  :root {
+    --body-xs-regular: var(--body-xs-regular-tablet);
+    --body-s-medium: var(--body-s-medium-tablet);
+    --body-m-regular: var(--body-m-regular-tablet);
+    --body-m-medium: var(--body-m-medium-tablet);
+    --body-m-semibold: var(--body-m-semibold-tablet);
+    --body-xl-semibold: var(--body-xl-semibold-tablet);
+    --body-xxl-semibold: var(--body-xxl-semibold-tablet);
+    --h6-semibold: var(--h6-semibold-tablet);
+    --h5-semibold: var(--h5-semibold-tablet);
+    --h4-semibold: var(--h4-semibold-tablet);
+    --h3-semibold: var(--h3-semibold-tablet);
+    --h2-semibold: var(--h2-semibold-tablet);
+    --h1-bold: var(--h1-bold-tablet);
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  :root {
+    --body-xs-regular: var(--body-xs-regular-desktop);
+    --body-s-medium: var(--body-s-medium-desktop);
+    --body-m-regular: var(--body-m-regular-desktop);
+    --body-m-medium: var(--body-m-medium-desktop);
+    --body-m-semibold: var(--body-m-semibold-desktop);
+    --body-xl-semibold: var(--body-xl-semibold-desktop);
+    --body-xxl-semibold: var(--body-xxl-semibold-desktop);
+    --h6-semibold: var(--h6-semibold-desktop);
+    --h5-semibold: var(--h5-semibold-desktop);
+    --h4-semibold: var(--h4-semibold-desktop);
+    --h3-semibold: var(--h3-semibold-desktop);
+    --h2-semibold: var(--h2-semibold-desktop);
+    --h1-bold: var(--h1-bold-desktop);
+  }
+}

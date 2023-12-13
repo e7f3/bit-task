@@ -1,0 +1,32 @@
+.Users {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding: 29px 24px 34px;
+
+  background-color: var(--color-gray-4);
+}
+
+.Title {
+  margin-bottom: 27px;
+
+  color: var(--color-white);
+}
+
+.UsersSearch {
+  margin-bottom: 18px;
+}
+
+.UsersList {
+  flex: 1;
+
+  width: 100%;
+}
+
+.UsersListPagination {
+  align-self: center;
+
+  margin-top: 24px;
+}

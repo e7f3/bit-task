@@ -1,0 +1,12 @@
+@import './reset';
+@import './fonts/googleFonts';
+@import './variables/global';
+
+body {
+  color: var(--color-white);
+  font: var(--body-m-medium);
+}
+
+.app {
+  min-height: 100vh;
+}

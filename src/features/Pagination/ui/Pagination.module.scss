@@ -1,0 +1,16 @@
+.Pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  column-gap: 4px;
+}
+
+.Pagination .ArrowButton {
+  padding: 6px 10px;
+}
+
+.RotatedArrow {
+  transform: rotate(180deg);
+}

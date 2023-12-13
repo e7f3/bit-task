@@ -1,0 +1,50 @@
+.UsersListHead {
+  display: grid;
+  grid-auto-flow: column;
+
+  border-radius: 8px 8px 0 0;
+
+  background-color: var(--color-black);
+}
+
+.ColumnTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 14px 20px;
+
+  column-gap: 10px;
+}
+
+.ColumnTitleRole,
+.ColumnTitleSubscription,
+.ColumnTitleTokens,
+.ColumnTitleControls {
+  display: none;
+}
+
+.Text {
+  color: var(--color-gray-6);
+}
+
+.ArrowIcon {
+  transition: transform 0.2s ease-in;
+}
+
+.ArrowIcon.AscSort {
+  transform: rotate(180deg);
+}
+
+.ArrowIcon.DescSort {
+  transform: rotate(0);
+}
+
+@media only screen and (min-width: 834px) {
+  .ColumnTitleRole,
+  .ColumnTitleSubscription,
+  .ColumnTitleTokens,
+  .ColumnTitleControls {
+    display: flex;
+  }
+}

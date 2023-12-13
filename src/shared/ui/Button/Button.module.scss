@@ -1,0 +1,115 @@
+.Button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: fit-content;
+  margin: 0;
+  padding: 0;
+
+  border: none;
+  border-radius: 8px;
+
+  outline: none;
+
+  box-shadow: 0 1px 1px 0 rgb(255 255 255 / 40%) inset;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease-in;
+}
+
+.Button.primary {
+  color: var(--color-white);
+
+  background-color: var(--color-primary);
+}
+
+.Button.primary:hover {
+  background-color: var(--color-strong);
+}
+
+.Button.primary:active {
+  background-color: var(--color-strong-down);
+}
+
+.Button.primary:disabled {
+  color: var(--color-gray-1);
+
+  background-color: var(--color-gray-2);
+
+  cursor: unset;
+}
+
+.Button.clean {
+  color: var(--color-white);
+
+  border: 1px solid var(--color-gray-2);
+
+  background-color: var(--color-gray-4);
+}
+
+.Button.clean:hover {
+  border: none;
+
+  background-color: var(--color-gray-2);
+}
+
+.Button.clean:active {
+  bottom: none;
+
+  background-color: var(--color-gray-3);
+}
+
+.Button.clean:disabled {
+  color: var(--color-gray-1);
+
+  border: 1px solid var(--color-gray-2);
+
+  background-color: var(--color-gray-4);
+
+  cursor: unset;
+}
+
+.Button.small {
+  padding: 10px 18px;
+
+  font: var(--button-small-font);
+}
+
+.Button.medium {
+  padding: 14px 24px;
+
+  font: var(--button-medium-font);
+}
+
+.Button.round {
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+}
+
+.Button.round.small {
+  padding: 10px;
+}
+
+.Button.round.medium {
+  padding: 14px;
+}
+
+.Button.image, .Button.image:hover, .Button.image:active, .Button.image:disabled {
+  padding: 0;
+
+  border: none;
+
+  background-color: transparent;
+
+  box-shadow: none;
+}
+
+.Button.no-border, .Button.no-border:hover, .Button.no-border:active, .Button.no-border:disabled {
+  color: var(--color-white);
+
+  border: none;
+
+  box-shadow: none;
+}
