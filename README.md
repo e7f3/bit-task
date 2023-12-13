@@ -14,7 +14,7 @@ Implement the first screen of the admin panel UI to display a user list with sea
 - **Transaction Log:**
   - Display a user's transaction log for detailed financial insights.
 
-## Features
+## Technology Stack
 
 - React with TypeScript
 - Webpack for bundling and build optimizations
