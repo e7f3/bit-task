@@ -1,19 +1,9 @@
-import { useEffect } from 'react'
+import { MainPage } from 'pages/MainPage/ui/MainPage'
+import { Header } from 'widgets/Header'
 
-import { fetchUsersList } from 'features/FetchUsersList'
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
-import { Users } from 'widgets/Users'
-
-export const App = () => {
-  const dispatch = useAppDispatch()
-
-  useEffect(() => {
-    dispatch(fetchUsersList())
-  }, [dispatch])
-
-  return (
-    <div>
-      <Users />
-    </div>
-  )
-}
+export const App = () => (
+  <div className='app'>
+    <Header />
+    <MainPage />
+  </div>
+)

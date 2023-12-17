@@ -1,3 +1,5 @@
+export { getUserBalance } from './model/selectors/getUserBalance/getUserBalance'
 export { fetchUserTransactions } from './model/services/fetchUserTransactions/fetchUserTransactions'
 export { userTransactionsReducer } from './model/slices/userTransactionsSlice'
-export { UserTransactionsSchema } from './model/types/userTransactionsSchema'
+export type { UserTransactionsSchema } from './model/types/userTransactionsSchema'
+export { UserTransactions } from './ui/UserTransactions/UserTransactions'

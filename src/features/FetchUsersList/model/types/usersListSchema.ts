@@ -5,6 +5,7 @@ import { User } from 'entities/User'
 export interface UsersListSchema extends EntityState<User> {
   isLoading: boolean
   error?: string
+  selectedUser?: User
   search?: string
   order: UsersListOrder
   currentPage: number

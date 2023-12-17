@@ -13,7 +13,7 @@ import { UserTransactionsSchema } from '../types/userTransactionsSchema'
 const initialState: UserTransactionsSchema = {
   ids: [],
   entities: {},
-  userId: undefined,
+  userBalance: undefined,
   isLoading: false,
   error: undefined,
 }
@@ -23,7 +23,7 @@ export const transactionsAdapter: EntityAdapter<Transaction> = createEntityAdapt
     const aDate = new Date(a.created_at)
     const bDate = new Date(b.created_at)
 
-    return aDate.getTime() - bDate.getTime()
+    return bDate.getTime() - aDate.getTime()
   },
 })
 
@@ -36,8 +36,8 @@ export const userTransactionsSlice = createSlice({
       transactionsAdapter.setAll(state, action.payload)
     },
 
-    setUserId(state, action: PayloadAction<string>) {
-      state.userId = action.payload
+    setUserBalance(state, action: PayloadAction<number>) {
+      state.userBalance = action.payload
     },
   },
   extraReducers: (builder) => builder

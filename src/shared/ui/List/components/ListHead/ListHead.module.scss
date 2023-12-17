@@ -1,13 +1,16 @@
-.UsersListHead {
+.ListHead {
+  grid-column: 1 / -1;
+
   display: grid;
   grid-auto-flow: column;
+  grid-template-columns: subgrid;
 
   border-radius: 8px 8px 0 0;
 
   background-color: var(--color-black);
 }
 
-.ColumnTitle {
+.Title {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,14 +20,11 @@
   column-gap: 10px;
 }
 
-.ColumnTitleRole,
-.ColumnTitleSubscription,
-.ColumnTitleTokens,
-.ColumnTitleControls {
+.ListHead.shrink .Title:not(:nth-child(1), :nth-child(2)) {
   display: none;
 }
 
-.Text {
+.TitleText {
   color: var(--color-gray-6);
 }
 
@@ -41,10 +41,7 @@
 }
 
 @media only screen and (min-width: 834px) {
-  .ColumnTitleRole,
-  .ColumnTitleSubscription,
-  .ColumnTitleTokens,
-  .ColumnTitleControls {
+  .ListHead.shrink .Title:not(:nth-child(1), :nth-child(2)) {
     display: flex;
   }
 }

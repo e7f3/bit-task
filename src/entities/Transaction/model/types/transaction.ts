@@ -7,7 +7,7 @@ export interface Transaction {
   meta: unknown
   amount: number
   status: TransactionStatus
-  type: 'SUBSCRIPTION'
+  type: TransactionType
   plan_id: string | null
   user_id: string
   referral_id: string | null
@@ -19,4 +19,10 @@ export enum TransactionStatus {
   FAILED = 'FAILED',
   SUCCEDED = 'SUCCEDDED',
   PENDING = 'PENDING',
+}
+
+export enum TransactionType {
+  REPLENISH = 'REPLENISH',
+  WRITE_OFF = 'WRITE_OFF',
+  SUBSCRIPTION = 'SUBSCRIPTION',
 }

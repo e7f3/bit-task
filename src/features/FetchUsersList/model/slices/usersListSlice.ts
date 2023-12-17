@@ -1,19 +1,26 @@
 import {
-  EntityAdapter, PayloadAction, createEntityAdapter, createSlice,
+  EntityAdapter,
+  PayloadAction,
+  createEntityAdapter,
+  createSlice,
 } from '@reduxjs/toolkit'
 
 import { User } from 'entities/User'
 
-import { FetchUsersListResponse, fetchUsersList } from '../services/fetchUsersList/fetchUsersList'
+import {
+  FetchUsersListResponse,
+  fetchUsersList,
+} from '../services/fetchUsersList/fetchUsersList'
 import { UsersListOrder, UsersListSchema } from '../types/usersListSchema'
 
 const initialState: UsersListSchema = {
   ids: [],
   entities: {},
+  selectedUser: undefined,
   isLoading: false,
   search: undefined,
   error: undefined,
-  order: UsersListOrder.ASC,
+  order: UsersListOrder.DESC,
   currentPage: 1,
   totalPages: 1,
 }
@@ -31,6 +38,11 @@ export const usersListSlice = createSlice({
       usersAdapter.setAll(state, action.payload)
     },
 
+    setSelectedUser(state, action: PayloadAction<string>) {
+      state.selectedUser = usersAdapter
+        .getSelectors()
+        .selectById(state, action.payload)
+    },
     setCurrentPageNumber(state, action: PayloadAction<number>) {
       state.currentPage = action.payload
     },
@@ -41,7 +53,9 @@ export const usersListSlice = createSlice({
       state.order = action.payload
     },
     toggleListOrder(state) {
-      state.order = state.order === UsersListOrder.ASC ? UsersListOrder.DESC : UsersListOrder.ASC
+      state.order = state.order === UsersListOrder.ASC
+        ? UsersListOrder.DESC
+        : UsersListOrder.ASC
     },
     setSearch(state, action: PayloadAction<string>) {
       state.search = action.payload
@@ -54,11 +68,14 @@ export const usersListSlice = createSlice({
         state.error = undefined
         state.isLoading = true
       })
-      .addCase(fetchUsersList.fulfilled, (state, action: PayloadAction<FetchUsersListResponse>) => {
-        usersAdapter.setAll(state, action.payload.data)
-        state.totalPages = action.payload.pages
-        state.isLoading = false
-      })
+      .addCase(
+        fetchUsersList.fulfilled,
+        (state, action: PayloadAction<FetchUsersListResponse>) => {
+          usersAdapter.setAll(state, action.payload.data)
+          state.totalPages = action.payload.pages
+          state.isLoading = false
+        },
+      )
       .addCase(fetchUsersList.rejected, (state, action) => {
         state.isLoading = false
         state.error = action.payload

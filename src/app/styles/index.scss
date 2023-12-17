@@ -8,5 +8,38 @@ body {
 }
 
 .app {
+  display: flex;
+  flex-direction: column;
+  row-gap: 27px;
+
   min-height: 100vh;
+  padding: 24px 0 0;
+
+  background-color: var(--color-black);
+
+  overflow-y: hidden;
+}
+
+.page {
+  height: 100%;
+
+  background-color: var(--color-black);
+
+  overflow-y: hidden;
+}
+
+@media only screen and (min-width: 834px) {
+  .app {
+    row-gap: 32px;
+
+    padding: 34px 40px;
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  .app {
+    row-gap: 44px;
+
+    padding: 34px 25px;
+  }
 }

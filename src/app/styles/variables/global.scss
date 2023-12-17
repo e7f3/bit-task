@@ -272,6 +272,7 @@
 
   // Other
   --color-critical: #fe4242;
+  --color-green: #1ABB34;
   --color-gradient-1: var(--color-primary);
   --color-gradient-2: #d41cf2;
   --premium-gradient: linear-gradient(
@@ -279,6 +280,7 @@
     var(--color-gradient-1) 0%,
     var(--color-gradient-2) 100%
   );
+  --color-drawer-background: rgb(0 0 0 / 60%);
 }
 
 @media only screen and (min-width: 834px) {

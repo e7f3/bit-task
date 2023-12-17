@@ -6,11 +6,12 @@ import { classNames } from 'shared/lib/utils/classNames/classNames'
 
 import classes from './Button.module.scss'
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'> {
   children?: ReactNode
   theme?: ButtonTheme
   size?: ButtonSize
   variant?: ButtonVariant
+  onClick?: () => void
   className?: string
 }
 

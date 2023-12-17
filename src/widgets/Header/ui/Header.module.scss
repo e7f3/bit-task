@@ -1,0 +1,88 @@
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 10px 16px;
+
+  border-radius: 17px;
+
+  background-color: var(--color-gray-4);
+}
+
+.LogoText {
+  color: var(--color-white);
+}
+
+.Organization {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  column-gap: 10px;
+}
+
+.OrgIconWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 3.5px 4px;
+
+  border-radius: 4px;
+
+  background-color: var(--color-gray-3);
+}
+
+.OrgName {
+  color: var(--color-white);
+}
+
+.Auth {
+  display: none;
+  grid-template-rows: max-content max-content;
+  grid-template-columns: max-content 1fr;
+
+  margin-left: auto;
+  padding: 8px 14px;
+
+  column-gap: 12px;
+
+  border: 1px solid var(--color-gray-3);
+  border-radius: 6px;
+
+  background-color: var(--color-gray-4);
+}
+
+.UserIcon {
+  grid-row: 1 / -1;
+  grid-column: 1 / 2;
+}
+
+.AuthText {
+  color: var(--color-gray-1);
+}
+
+.UserName {
+  color: var(--color-white);
+}
+
+@media only screen and (min-width: 834px) {
+  .Header {
+    justify-content: flex-start;
+
+    padding: 14px 18px;
+
+    column-gap: 44px;
+  }
+
+  .Auth {
+    display: grid;
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  .Header {
+    padding: 16px 24px;
+  }
+}

@@ -18,9 +18,14 @@ import { Text, TextVariant } from 'shared/ui/Text/Text'
 
 import classes from './Users.module.scss'
 
+interface UsersProps {
+  onUserClick?: (userId: string) => void
+}
+
 const DEBOUNCE_TIMEOUT = 500
 
-export const Users: FC = memo(() => {
+export const Users: FC<UsersProps> = memo((props) => {
+  const { onUserClick } = props
   const dispatch = useAppDispatch()
   const search = useSelector(getUsersListSearch)
   const currentPageNumber = useSelector(getUsersListCurrentPage)
@@ -46,10 +51,6 @@ export const Users: FC = memo(() => {
     },
     [dispatch],
   )
-
-  const onUserClick = useCallback((userId: string) => {
-    dispatch(userTransactionsActions.setUserId(userId))
-  }, [dispatch])
 
   return (
     <div className={classes.Users}>

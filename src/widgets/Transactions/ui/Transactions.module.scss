@@ -1,0 +1,48 @@
+.Drawer {
+  height: 100vh;
+}
+
+.Transactions {
+  display: grid;
+  grid-template-rows: max-content max-content 1fr;
+  row-gap: 20px;
+
+  max-height: 100%;
+}
+
+.TransactionsGraphWrapper {
+  display: grid;
+  grid-template-rows: max-content 1fr;
+  row-gap: 20px;
+}
+
+.TransactionsGraph {
+  height: 217px;
+}
+
+.TransactionsListWrapper {
+  display: grid;
+  grid-template-rows: max-content 1fr;
+  row-gap: 20px;
+
+  max-height: 100%;
+  padding-top: 20px;
+
+  border-top: 1px solid var(--color-gray-3);
+
+  overflow-x: hidden;
+}
+
+.TransactionsList {
+  max-height: 100%;
+
+  overflow-y: auto;
+}
+
+.TransactionsHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding-right: 30px;
+}

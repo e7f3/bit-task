@@ -1,0 +1,45 @@
+.ListItem {
+  grid-column: 1 / -1;
+
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: subgrid;
+
+  border-bottom: 1px solid var(--color-gray-3);
+
+  background-color: var(--color-gray-4);
+}
+
+.ListItemContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  padding: 14px 20px;
+
+  column-gap: 10px;
+}
+
+.ListItem.shrink .ListItemContent:not(:nth-child(1), :nth-child(2)) {
+  display: none;
+}
+
+.ListText {
+  color: var(--color-white);
+  text-align: center;
+}
+
+.ListText.success {
+  color: var(--color-green);
+}
+
+.ListText.warning {
+  color: var(--color-critical);
+}
+
+@media only screen and (min-width: 834px) {
+  .ListItem.shrink .ListItemContent:not(:nth-child(1), :nth-child(2)) {
+    display: flex;
+  }
+}

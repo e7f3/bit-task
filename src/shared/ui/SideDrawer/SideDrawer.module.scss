@@ -1,0 +1,128 @@
+.SideDrawer {
+  position: fixed;
+  inset: 0;
+
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+.SideDrawer.opened {
+  opacity: 1;
+
+  pointer-events: auto;
+}
+
+.overlay {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: transparent;
+
+  backdrop-filter: unset;
+}
+
+.content {
+  position: relative;
+
+  height: 100%;
+  max-width: 375px;
+  padding: 56px 16px;
+
+  background-color: var(--color-gray-4);
+
+  transform: translateX(100%);
+
+  animation-duration: 0.2s;
+  animation-timing-function: ease-in;
+}
+
+.SideDrawer.opened .content {
+  transform: translateX(0);
+
+  animation-name: content-animation-open;
+}
+
+.SideDrawer.isClosing .content {
+  transform: translateX(100%);
+
+  animation-name: content-animation-close;
+}
+
+.SideDrawer.opened .overlay {
+  background-color: var(--color-drawer-background);
+
+  animation-name: overlay-animation-open;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-in;
+}
+
+.SideDrawer.isClosing .overlay {
+  animation-name: overlay-animation-close;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-in;
+}
+
+.CloseButton {
+  position: absolute;
+  right: 21px;
+}
+
+@keyframes overlay-animation-open {
+  from {
+    background-color: transparent;
+  }
+
+  to {
+    background-color: var(--color-drawer-background);
+  }
+}
+
+@keyframes overlay-animation-close {
+  from {
+    background-color: var(--color-drawer-background);
+  }
+
+  to {
+    background-color: transparent;
+  }
+}
+
+@keyframes content-animation-open {
+  from {
+    opacity: 0.2;
+    transform: translateX(100%)
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0)
+  }
+}
+
+@keyframes content-animation-close {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0.2;
+    transform: translateX(100%);
+  }
+}
+
+@media only screen and (min-width: 834px) {
+  .content {
+    max-width: 470px;
+    padding: 56px 20px;
+  }
+
+  .CloseButton {
+    right: 25px;
+  }
+}
