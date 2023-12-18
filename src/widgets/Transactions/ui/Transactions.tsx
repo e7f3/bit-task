@@ -52,6 +52,7 @@ export const Transactions: FC<TransactionsProps> = memo((props) => {
   return (
     <DynamicReducerLoader reducers={reducers} removeAfterUnmount>
       <SideDrawer className={classes.Drawer} isOpen={isOpen} onClose={onClose}>
+        {isLoading && <Spinner className={classes.Spinner} />}
         <div className={classes.Transactions}>
           <div className={classes.TransactionsHead}>
             <Text variant={TextVariant.BODY_XL_SEMIBOLD}>{user.email}</Text>
@@ -65,12 +66,10 @@ export const Transactions: FC<TransactionsProps> = memo((props) => {
               className={classes.TransactionsGraph}
               currentAmount={user.subscription.tokens}
             />
-            <Spinner className={classes.TransactionsSpinner} />
           </div>
           <div className={classes.TransactionsListWrapper}>
             <Text variant={TextVariant.BODY_XL_SEMIBOLD}>История операций</Text>
             <UserTransactions className={classes.TransactionsList} />
-            <Spinner className={classes.TransactionsSpinner} />
           </div>
         </div>
       </SideDrawer>

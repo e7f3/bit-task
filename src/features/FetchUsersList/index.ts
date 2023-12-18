@@ -2,6 +2,9 @@ export { getSelectedUser } from './model/selectors/getSelectedUser/getSelectedUs
 export { getSelectedUserId } from './model/selectors/getSelectedUserId/getSelectedUserId'
 export { getUsersList } from './model/selectors/getUsersList/getUsersList'
 export { getUsersListCurrentPage } from './model/selectors/getUsersListCurrentPage/getUsersListCurrentPage'
+export { getUsersListError } from './model/selectors/getUsersListError/getUsersListError'
+// eslint-disable-next-line import/no-cycle
+export { getUsersListIsLoading } from './model/selectors/getUsersListIsLoading/getUsersListIsLoading'
 export { getUsersListSearch } from './model/selectors/getUsersListSearch/getUsersListSearch'
 export { getUsersListTotalPages } from './model/selectors/getUsersListTotalPages/getUsersListTotalPages'
 export { fetchUsersList } from './model/services/fetchUsersList/fetchUsersList'

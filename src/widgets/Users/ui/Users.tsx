@@ -8,12 +8,14 @@ import {
   fetchUsersList,
   usersListActions,
   UsersList,
+  getUsersListError,
+  getUsersListIsLoading,
 } from 'features/FetchUsersList'
-import { userTransactionsActions } from 'features/FetchUserTransactions/model/slices/userTransactionsSlice'
 import { Pagination } from 'features/Pagination'
 import { Search } from 'features/Search'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
 import { useDebouncedCallback } from 'shared/lib/hooks/useDebounceCallback'
+import { Spinner } from 'shared/ui/Spinner/Spinner'
 import { Text, TextVariant } from 'shared/ui/Text/Text'
 
 import classes from './Users.module.scss'
@@ -30,6 +32,8 @@ export const Users: FC<UsersProps> = memo((props) => {
   const search = useSelector(getUsersListSearch)
   const currentPageNumber = useSelector(getUsersListCurrentPage)
   const totalPages = useSelector(getUsersListTotalPages)
+  const isLoading = useSelector(getUsersListIsLoading)
+  const error = useSelector(getUsersListError)
 
   const fetchUsersListDebounced = useDebouncedCallback(() => {
     dispatch(fetchUsersList())
@@ -51,6 +55,14 @@ export const Users: FC<UsersProps> = memo((props) => {
     },
     [dispatch],
   )
+
+  if (error) {
+    return null
+  }
+
+  if (isLoading) {
+    return <Spinner className={classes.Spinner} />
+  }
 
   return (
     <div className={classes.Users}>

@@ -8,11 +8,13 @@ interface SpinnerProps {
   className?: string
 }
 
-export const Spinner : FC<SpinnerProps> = memo((props) => {
+export const Spinner: FC<SpinnerProps> = memo((props) => {
   const { className } = props
   return (
     <div className={classNames(classes.SpinnerWrapper, {}, [className])}>
-      <span className={classes.Spinner} />
+      <div className={classes.SpinnerContent}>
+        <span className={classes.Spinner} />
+      </div>
     </div>
   )
 })
