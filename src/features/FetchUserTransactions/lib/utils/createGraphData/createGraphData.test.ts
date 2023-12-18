@@ -1,18 +1,22 @@
-import { Transaction, TransactionStatus, TransactionType } from 'entities/Transaction'
+import {
+  Transaction,
+  TransactionStatus,
+  TransactionType,
+} from 'entities/Transaction'
 import { MS_IN_DAY } from 'shared/consts/common'
 import { Currency } from 'shared/types/common'
 
 import { createGraphData } from './createGraphData'
 
-const mockedTransactions: Transaction[] = [
+const mockedTransactions = [
   {
     id: '220fce95-07ad-4518-9c28-98560c8c720c',
     provider: 'SYSTEM',
     amount: 140212,
-    currency: Currency.SYSTEM_TOKEN,
+    currency: 'SYSTEM_TOKEN',
     meta: null,
-    status: TransactionStatus.PENDING,
-    type: TransactionType.WRITE_OFF,
+    status: 'PENDING',
+    type: 'WRITE_OFF',
     plan_id: null,
     user_id: 'cb7bde4f-3f3d-443f-8df8-b6da7e92598b',
     referral_id: null,
@@ -23,10 +27,10 @@ const mockedTransactions: Transaction[] = [
     id: '6cb6a822-7759-490b-8d69-73a42c596e58',
     provider: 'SYSTEM',
     amount: 195569,
-    currency: Currency.SYSTEM_TOKEN,
+    currency: 'SYSTEM_TOKEN',
     meta: null,
-    status: TransactionStatus.PENDING,
-    type: TransactionType.REPLENISH,
+    status: 'PENDING',
+    type: 'REPLENISH',
     plan_id: null,
     user_id: 'cb7bde4f-3f3d-443f-8df8-b6da7e92598b',
     referral_id: null,
@@ -42,12 +46,11 @@ describe('createGraphData', () => {
   })
   test('Transactions array is empty', () => {
     // My timezone is +4, so test may fail if you have another timezone
-    const transactions: Transaction[] = []
     const balance = 0
     const timeSpan = MS_IN_DAY
     const dataKey = 'amount'
 
-    const result = createGraphData(transactions, balance, timeSpan, dataKey)
+    const result = createGraphData([], balance, timeSpan, dataKey)
 
     expect(result.data.length).toEqual(1)
     expect(result.data[0]).toHaveProperty(dataKey, balance)
@@ -55,12 +58,12 @@ describe('createGraphData', () => {
   })
 
   test('Transactions array is not empty', () => {
-    const transactions: Transaction[] = mockedTransactions
+    // My timezone is +4, so test may fail if you have another timezone
     const balance = 500000
     const timeSpan = MS_IN_DAY
     const dataKey = 'amount'
 
-    const result = createGraphData(transactions, balance, timeSpan, dataKey)
+    const result = createGraphData(mockedTransactions as Transaction[], balance, timeSpan, dataKey)
     const expectedResult = [
       {
         name: '18.12.23, 11:50:00',
@@ -76,7 +79,7 @@ describe('createGraphData', () => {
       },
     ]
 
-    expect(result.data.length).toEqual(transactions.length + 1)
+    expect(result.data.length).toEqual(mockedTransactions.length + 1)
     expect(result.data[result.data.length - 1]).toHaveProperty(dataKey, balance)
     expect(result.data).toEqual(expectedResult)
 
