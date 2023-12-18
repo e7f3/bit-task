@@ -35,43 +35,64 @@ export const Text: FC<TextProps> = memo((props) => {
   switch (variant) {
     case TextVariant.H1:
       return (
-        <h1 className={classNames(classes[variant], {}, [className])}>
+        <h1
+          className={classNames(classes[variant], {}, [className])}
+          data-testid='text'
+        >
           {children}
         </h1>
       )
     case TextVariant.H2:
       return (
-        <h2 className={classNames(classes[variant], {}, [className])}>
+        <h2
+          className={classNames(classes[variant], {}, [className])}
+          data-testid='text'
+        >
           {children}
         </h2>
       )
     case TextVariant.H3:
       return (
-        <h3 className={classNames(classes[variant], {}, [className])}>
+        <h3
+          className={classNames(classes[variant], {}, [className])}
+          data-testid='text'
+        >
           {children}
         </h3>
       )
     case TextVariant.H4:
       return (
-        <h4 className={classNames(classes[variant], {}, [className])}>
+        <h4
+          className={classNames(classes[variant], {}, [className])}
+          data-testid='text'
+        >
           {children}
         </h4>
       )
     case TextVariant.H5:
       return (
-        <h5 className={classNames(classes[variant], {}, [className])}>
+        <h5
+          className={classNames(classes[variant], {}, [className])}
+          data-testid='text'
+        >
           {children}
         </h5>
       )
     case TextVariant.H6:
       return (
-        <h6 className={classNames(classes[variant], {}, [className])}>
+        <h6
+          className={classNames(classes[variant], {}, [className])}
+          data-testid='text'
+        >
           {children}
         </h6>
       )
     default:
       return (
-        <p className={classNames(classes[variant], {}, [className])}>
+        <p
+          className={classNames(classes[variant], {}, [className])}
+          data-testid='text'
+        >
           {children}
         </p>
       )

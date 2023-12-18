@@ -67,6 +67,7 @@ export const Input: FC<InputProps> = (props) => {
           onChange={handleChange}
           id={labelId}
           required={hasError}
+          data-testid='input'
           {...rest}
         />
         {Badge && (

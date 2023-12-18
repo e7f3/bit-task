@@ -15,6 +15,7 @@ export const Icon: FC<IconProps> = (props) => {
   return (
     <IconComponent
       className={className}
+      data-testid='icon'
     />
   )
 }
