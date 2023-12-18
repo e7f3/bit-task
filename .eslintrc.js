@@ -77,6 +77,7 @@ const esRules = {
   'react/prop-types': 'off',
   'no-nested-ternary': 'off',
   'no-else-return': 'off',
+  'implicit-arrow-linebreak': 'off',
 }
 
 module.exports = {

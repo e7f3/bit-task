@@ -11,5 +11,11 @@ module.exports = {
     'order/order': selectorOrdering, // to fine-tune configuration use selectorOrderFactory
     'order/properties-order': propertyOrdering,
     'declaration-empty-line-before': null,
+    'selector-pseudo-class-no-unknown': [
+      true,
+      {
+        ignorePseudoClasses: ['global'],
+      },
+    ],
   },
 }

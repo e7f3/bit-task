@@ -1,22 +1,15 @@
-import { FC, memo, useMemo } from 'react'
-import { useSelector } from 'react-redux'
 import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from 'recharts'
+  FC, memo, useCallback, useMemo, useState,
+} from 'react'
+import { useSelector } from 'react-redux'
 
-import { TransactionType } from 'entities/Transaction'
+import { createGraphData } from 'features/FetchUserTransactions/lib/utils/createGraphData/createGraphData'
 import { MS_IN_DAY } from 'shared/consts/common'
 import { classNames } from 'shared/lib/utils/classNames/classNames'
+import { Graph } from 'shared/ui/Graph/Graph'
 
 import classes from './TransactionsGraph.module.scss'
-import { buildDateString } from '../../lib/buildDateString/buildDateString'
+import { useChartLegendContent } from '../../lib/hooks/useChartLegendContent'
 import { getUserTransactions } from '../../model/selectors/getUserTransactions/getUserTransactions'
 
 interface TransactionsGraphProps {
@@ -28,50 +21,30 @@ interface TransactionsGraphProps {
 export const TransactionsGraph: FC<TransactionsGraphProps> = memo((props) => {
   const { className, currentAmount, name } = props
   const transactions = useSelector(getUserTransactions.selectAll)
+  const [transactionsDates, setTransactionsDates] = useState<string[]>([])
+  const [borderDates, setBorderDates] = useState<[string, string]>(['', ''])
 
   const graphData = useMemo(() => {
-    const currentDate = Date.now()
-    const index = transactions.findIndex(
-      (transaction) => new Date(currentDate).getTime()
-          - new Date(transaction.created_at).getTime()
-        <= MS_IN_DAY,
+    const { data, dates, borderDates } = createGraphData(
+      transactions,
+      currentAmount,
+      MS_IN_DAY,
+      name,
     )
-    let amount = currentAmount
-    return [
-      {
-        name: buildDateString(new Date(currentDate)),
-        [name]: currentAmount,
-      },
-      ...transactions.slice(index).map((transaction) => {
-        amount
-          -= transaction.type === TransactionType.WRITE_OFF
-            ? -transaction.amount
-            : transaction.amount
-        return {
-          name: buildDateString(new Date(transaction.created_at)),
-          [name]: amount,
-        }
-      }),
-    ].reverse()
+    setTransactionsDates(dates)
+    setBorderDates(borderDates)
+    return data
   }, [transactions, currentAmount, name])
 
-  console.log(graphData)
+  const legendContent = useChartLegendContent(
+    transactionsDates,
+    borderDates,
+    classes,
+  )
+
   return (
     <div className={classNames(classes.TransactionsGraph, {}, [className])}>
-      <ResponsiveContainer width='100%' height='100%'>
-        <LineChart width={300} height={100} data={graphData}>
-          <XAxis dataKey='date' />
-          <YAxis yAxisId='right' orientation='right' />
-          <Legend />
-          <Line
-            yAxisId='right'
-            dataKey={name}
-            stroke='#8884d8'
-            strokeWidth={2}
-            dot={false}
-          />
-        </LineChart>
-      </ResponsiveContainer>
+      <Graph data={graphData} legend={legendContent} curveName={name} />
     </div>
   )
 })

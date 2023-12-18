@@ -1,3 +1,70 @@
 .TransactionsGraph {
   display: block;
 }
+
+.Legend {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+
+  padding-right: 60px;
+}
+
+.LegendDate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  column-gap: 8px;
+}
+
+.LegendItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  column-gap: 8px;
+}
+
+.LegendText {
+  display: inline-block;
+
+  color: var(--color-gray-1);
+}
+
+.LegendChartMini {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+
+  background-color: var(--color-gray-3);
+}
+
+.ChartMiniText {
+  position: absolute;
+  top: 50%;
+
+  height: 100%;
+
+  transform: translateY(-50%);
+}
+
+.ChartMiniText:first-of-type{
+  left: 54px;
+
+  padding-right: 10px;
+
+  border-right: 3px solid rgb(28 100 242 / 60%);
+}
+
+.ChartMiniText:last-of-type{
+  right: 54px;
+
+  padding-left: 10px;
+
+  border-left: 3px solid rgb(28 100 242 / 60%);
+}

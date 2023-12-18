@@ -1,0 +1,40 @@
+.Graph {
+  display: block;
+
+  height: 100%;
+
+  :global(.recharts-area-curve) {
+    stroke: var(--color-primary);
+  }
+
+  :global(.recharts-legend-icon) {
+    stroke: var(--color-primary);
+  }
+
+  :global(.recharts-cartesian-axis-line) {
+    display: none;
+  }
+
+  :global(.recharts-cartesian-axis-tick) {
+    font: var(--body-s-medium);
+
+    stroke: var(--color-gray-1);
+  }
+
+  :global(.recharts-cartesian-axis-tick-line) {
+    display: none;
+  }
+
+  :global(.recharts-cartesian-grid-vertical) {
+    display: none;
+  }
+
+  :global(.recharts-cartesian-grid-horizontal) {
+    stroke: var(--color-gray-3);
+    opacity: 0.5;
+  }
+
+  :global(.recharts-text) {
+    font-family: var(--font-family);
+  }
+}

@@ -12,8 +12,9 @@ import {
 } from 'shared/ui/List'
 
 import classes from './UserTransactions.module.scss'
-import { buildDateString } from '../../lib/buildDateString/buildDateString'
-import { compareTransactionName } from '../../lib/compareTransactionName/comparetransactionName'
+import { buildAmountString } from '../../lib/utils/buildAmountString/buildAmountString'
+import { buildDateString } from '../../lib/utils/buildDateString/buildDateString'
+import { compareTransactionName } from '../../lib/utils/compareTransactionName/comparetransactionName'
 import { getUserTransactions } from '../../model/selectors/getUserTransactions/getUserTransactions'
 
 interface UserTransactionsProps {
@@ -54,7 +55,7 @@ export const UserTransactions: FC<UserTransactionsProps> = memo((props) => {
       }
 
       const amount = transaction.type === TransactionType.WRITE_OFF ? -transaction.amount : transaction.amount
-      const amountString = `${amount.toLocaleString().replace(/,/g, ' ')} ${CURRENCY_POSTFIX}`
+      const amountString = buildAmountString(amount, CURRENCY_POSTFIX)
 
       return {
         id: transaction.id,
