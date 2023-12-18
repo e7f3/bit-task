@@ -1,5 +1,8 @@
 export { getUserBalance } from './model/selectors/getUserBalance/getUserBalance'
+export { getUserTransactionsError } from './model/selectors/getUserTransactionsError/getUserTransactionsError'
+export { getUserTransactionsIsLoading } from './model/selectors/getUserTransactionsIsLoading/getUserTransactionsIsLoading'
 export { fetchUserTransactions } from './model/services/fetchUserTransactions/fetchUserTransactions'
 export { userTransactionsReducer } from './model/slices/userTransactionsSlice'
 export type { UserTransactionsSchema } from './model/types/userTransactionsSchema'
+export { TransactionsGraph } from './ui/TransactionsGraph/TransactionsGraph'
 export { UserTransactions } from './ui/UserTransactions/UserTransactions'

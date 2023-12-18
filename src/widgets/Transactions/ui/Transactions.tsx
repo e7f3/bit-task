@@ -6,17 +6,15 @@ import {
   fetchUserTransactions,
   UserTransactions,
   userTransactionsReducer,
+  getUserTransactionsError,
+  getUserTransactionsIsLoading,
+  TransactionsGraph,
 } from 'features/FetchUserTransactions'
-import { getUserTransactionsError } from 'features/FetchUserTransactions/model/selectors/getUserTransactionsError/getUserTransactionsError'
-import { getUserTransactionsIsLoading } from 'features/FetchUserTransactions/model/selectors/getUserTransactionsIsLoading/getUserTransactionsIsLoading'
-import { TransactionsGraph } from 'features/FetchUserTransactions/ui/TransactionsGraph/TransactionsGraph'
 import {
   DynamicReducerLoader,
   ReducersList,
 } from 'shared/lib/components/DynamicReducerLoader/DynamicReducerLoader'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
-import { Button, ButtonVariant } from 'shared/ui/Button/Button'
-import { Icon } from 'shared/ui/Icon/Icon'
 import { SideDrawer } from 'shared/ui/SideDrawer/SideDrawer'
 import { Spinner } from 'shared/ui/Spinner/Spinner'
 import { Text, TextVariant } from 'shared/ui/Text/Text'
@@ -45,7 +43,7 @@ export const Transactions: FC<TransactionsProps> = memo((props) => {
     }
   }, [dispatch, user])
 
-  if (!isOpen || !user) {
+  if (!isOpen || !user || error) {
     return null
   }
 
