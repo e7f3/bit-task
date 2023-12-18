@@ -78,6 +78,7 @@ const esRules = {
   'no-nested-ternary': 'off',
   'no-else-return': 'off',
   'implicit-arrow-linebreak': 'off',
+  'no-undef': 'warn'
 }
 
 module.exports = {

@@ -11,6 +11,8 @@
 }
 
 .TransactionsGraphWrapper {
+  position: relative;
+
   display: grid;
   grid-template-rows: max-content 1fr;
   row-gap: 20px;
@@ -21,6 +23,8 @@
 }
 
 .TransactionsListWrapper {
+  position: relative;
+
   display: grid;
   grid-template-rows: max-content 1fr;
   row-gap: 20px;
@@ -45,4 +49,9 @@
   align-items: center;
 
   padding-right: 30px;
+}
+
+.TransactionsSpinner {
+  position: absolute;
+  right: 5px;
 }

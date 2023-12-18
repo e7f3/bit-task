@@ -1,0 +1,36 @@
+.SpinnerWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 30px;
+  height: 30px;
+
+  border-radius: 4px;
+
+  background-color: var(--color-gray-3);
+}
+
+.Spinner {
+  display: inline-block;
+
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+
+  border: 2px solid var(--color-gray-2);
+  border-bottom-color: var(--color-primary);
+  border-radius: 50%;
+
+  animation: rotation 1s linear infinite;
+  }
+
+  @keyframes rotation {
+  0% {
+      transform: rotate(0deg);
+  }
+
+  100% {
+      transform: rotate(360deg);
+  }
+  } 

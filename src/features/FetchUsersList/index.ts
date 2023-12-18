@@ -1,5 +1,5 @@
 export { getSelectedUser } from './model/selectors/getSelectedUser/getSelectedUser'
-export { getUsersListSelectedUserId } from './model/selectors/getSelectedUserId/getSelectedUserId'
+export { getSelectedUserId } from './model/selectors/getSelectedUserId/getSelectedUserId'
 export { getUsersList } from './model/selectors/getUsersList/getUsersList'
 export { getUsersListCurrentPage } from './model/selectors/getUsersListCurrentPage/getUsersListCurrentPage'
 export { getUsersListSearch } from './model/selectors/getUsersListSearch/getUsersListSearch'

@@ -7,6 +7,8 @@ import {
   UserTransactions,
   userTransactionsReducer,
 } from 'features/FetchUserTransactions'
+import { getUserTransactionsError } from 'features/FetchUserTransactions/model/selectors/getUserTransactionsError/getUserTransactionsError'
+import { getUserTransactionsIsLoading } from 'features/FetchUserTransactions/model/selectors/getUserTransactionsIsLoading/getUserTransactionsIsLoading'
 import { TransactionsGraph } from 'features/FetchUserTransactions/ui/TransactionsGraph/TransactionsGraph'
 import {
   DynamicReducerLoader,
@@ -16,6 +18,7 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
 import { Button, ButtonVariant } from 'shared/ui/Button/Button'
 import { Icon } from 'shared/ui/Icon/Icon'
 import { SideDrawer } from 'shared/ui/SideDrawer/SideDrawer'
+import { Spinner } from 'shared/ui/Spinner/Spinner'
 import { Text, TextVariant } from 'shared/ui/Text/Text'
 
 import classes from './Transactions.module.scss'
@@ -33,6 +36,8 @@ export const Transactions: FC<TransactionsProps> = memo((props) => {
   const { isOpen, onClose } = props
   const dispatch = useAppDispatch()
   const user = useSelector(getSelectedUser)
+  const isLoading = useSelector(getUserTransactionsIsLoading)
+  const error = useSelector(getUserTransactionsError)
 
   useEffect(() => {
     if (user) {
@@ -60,10 +65,12 @@ export const Transactions: FC<TransactionsProps> = memo((props) => {
               className={classes.TransactionsGraph}
               currentAmount={user.subscription.tokens}
             />
+            <Spinner className={classes.TransactionsSpinner} />
           </div>
           <div className={classes.TransactionsListWrapper}>
             <Text variant={TextVariant.BODY_XL_SEMIBOLD}>История операций</Text>
             <UserTransactions className={classes.TransactionsList} />
+            <Spinner className={classes.TransactionsSpinner} />
           </div>
         </div>
       </SideDrawer>
