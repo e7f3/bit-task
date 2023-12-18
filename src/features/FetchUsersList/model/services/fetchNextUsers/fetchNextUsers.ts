@@ -25,7 +25,7 @@ export const fetchNextUsers = createAsyncThunk<
 
     return
   } catch (error) {
-    console.log(error)
+    // console.log(error)
     thunkApi.rejectWithValue('Error while fetching next users')
   }
 })

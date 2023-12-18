@@ -2,8 +2,12 @@ import { StateSchema } from 'app/providers/StoreProvider'
 import { TestAsyncThunk } from 'shared/lib/test/TestAsynkThunk/TestAsyncThunk'
 
 import { fetchNextUsers } from './fetchNextUsers'
+import { usersListActions } from '../../slices/usersListSlice'
 import { UsersListOrder } from '../../types/usersListSchema'
-import { fetchUsersList } from '../fetchUsersList/fetchUsersList'
+import {
+  FetchUsersListResponse,
+  fetchUsersList,
+} from '../fetchUsersList/fetchUsersList'
 
 jest.mock('../fetchUsersList/fetchUsersList')
 
@@ -114,7 +118,8 @@ const returnData = {
 }
 
 describe('fetchNextUsers.test', () => {
-  test('Simple fetchNextUsers.test', async () => {
+  test('fetchNextUsers.test successful', async () => {
+    // Mock state
     const state: DeepPartial<StateSchema> = {
       usersList: {
         selectedUser: undefined,
@@ -128,17 +133,46 @@ describe('fetchNextUsers.test', () => {
         entities: {},
       },
     }
+    // Mock asynk thunk
     const thunk = new TestAsyncThunk(fetchNextUsers, state)
-
+    // Mock api response
     thunk.api.get.mockReturnValue(Promise.resolve({ data: returnData }))
 
     await thunk.callThunk()
-
-    expect(thunk.dispatch).toBeCalledTimes(4)
+    // Check fetch call
     expect(fetchUsersList).toBeCalled()
+    // Check dispatch calls
+    expect(thunk.dispatch).toBeCalledTimes(4)
+    // Firstly pending
+    expect(thunk.dispatch).toHaveBeenNthCalledWith(
+      1,
+      fetchNextUsers.pending(expect.any(String), undefined),
+    )
+    // Then update current page number
+    expect(thunk.dispatch).toHaveBeenNthCalledWith(
+      2,
+      usersListActions.setCurrentPageNumber(2),
+    )
+    // After, fulfilled inner call
+    expect(thunk.dispatch).toHaveBeenNthCalledWith(
+      3,
+      fetchUsersList.fulfilled(
+        returnData as FetchUsersListResponse,
+        expect.any(String),
+        undefined,
+      ),
+    )
+    // Finally fulfilled
+    expect(thunk.dispatch).toHaveBeenNthCalledWith(
+      4,
+      fetchNextUsers.fulfilled(undefined, expect.any(String), undefined),
+    )
+    // Check result
+    expect(thunk).not.toHaveProperty('payload')
   })
 
   test('fetchNextUsers.test last page', async () => {
+    // Mock state
     const state: DeepPartial<StateSchema> = {
       usersList: {
         selectedUser: undefined,
@@ -152,14 +186,27 @@ describe('fetchNextUsers.test', () => {
         entities: {},
       },
     }
-
+    // Mock asynk thunk
     const thunk = new TestAsyncThunk(fetchNextUsers, state)
-
+    // Mock api response
     thunk.api.get.mockReturnValue(Promise.resolve({ data: returnData }))
 
     await thunk.callThunk()
-
-    expect(thunk.dispatch).toBeCalledTimes(2)
+    // Check fetch call
     expect(fetchUsersList).not.toBeCalled()
+    // Check dispatch calls
+    expect(thunk.dispatch).toBeCalledTimes(2)
+    // Firstly pending
+    expect(thunk.dispatch).toHaveBeenNthCalledWith(
+      1,
+      fetchNextUsers.pending(expect.any(String), undefined),
+    )
+    // Then fulfilled
+    expect(thunk.dispatch).toHaveBeenNthCalledWith(
+      2,
+      fetchNextUsers.fulfilled(undefined, expect.any(String), undefined),
+    )
+    // Check result
+    expect(thunk).not.toHaveProperty('payload')
   })
 })
