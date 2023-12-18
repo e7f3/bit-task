@@ -134,7 +134,9 @@ describe('fetchUserTransactions.test', () => {
     expect(thunk.dispatch).toHaveBeenNthCalledWith(
       2,
       fetchUserTransactions.rejected(
-        expect.any(Error('Rejected')),
+        {
+          message: 'Rejected',
+        } as Error,
         expect.any(String),
         {
           userId: 'f2a7d21f-bd3b-4885-89fb-c939cfac33ee',

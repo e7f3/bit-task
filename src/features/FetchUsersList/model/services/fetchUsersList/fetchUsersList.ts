@@ -38,7 +38,7 @@ export const fetchUsersList = createAsyncThunk<
 
     return response.data
   } catch (error) {
-    console.log(error)
+    // console.log(error)
     return thunkApi.rejectWithValue('Error while fetching users list')
   }
 })

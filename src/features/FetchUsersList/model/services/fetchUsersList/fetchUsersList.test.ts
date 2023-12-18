@@ -1,7 +1,7 @@
 import { StateSchema } from 'app/providers/StoreProvider'
 import { TestAsyncThunk } from 'shared/lib/test/TestAsynkThunk/TestAsyncThunk'
 
-import { fetchUsersList } from './fetchUsersList'
+import { FetchUsersListResponse, fetchUsersList } from './fetchUsersList'
 import { UsersListOrder } from '../../types/usersListSchema'
 
 const returnData = {
@@ -111,7 +111,8 @@ const returnData = {
 }
 
 describe('fetchUsersList.test', () => {
-  test('Simple fetchUsersList.test', async () => {
+  test('fetchUsersList.test successful', async () => {
+    // Mock state
     const state: DeepPartial<StateSchema> = {
       usersList: {
         selectedUser: undefined,
@@ -125,41 +126,36 @@ describe('fetchUsersList.test', () => {
         entities: {},
       },
     }
+    // Mock asynk thunk
     const thunk = new TestAsyncThunk(fetchUsersList, state)
-
+    // Mock api response
     thunk.api.get.mockReturnValue(Promise.resolve({ data: returnData }))
 
     const result = await thunk.callThunk()
-
-    expect(thunk.dispatch).toBeCalledTimes(2)
-    expect(thunk.dispatch).toHaveBeenNthCalledWith(1, {
-      type: 'usersList/fetchUsersList/pending',
-      payload: undefined,
-      meta: {
-        arg: undefined,
-        requestId: expect.any(String),
-        requestStatus: 'pending',
-      },
-    })
-    expect(thunk.dispatch).toHaveBeenNthCalledWith(2, {
-      type: 'usersList/fetchUsersList/fulfilled',
-      payload: {
-        data: returnData.data,
-        pages: returnData.pages,
-      },
-      meta: {
-        arg: undefined,
-        requestId: expect.any(String),
-        requestStatus: 'fulfilled',
-      },
-    })
-
+    // Check api call
     expect(thunk.api.get).toHaveBeenCalled()
-    expect(result.meta.requestStatus).toEqual('fulfilled')
+    // Check dispatch calls
+    expect(thunk.dispatch).toBeCalledTimes(2)
+    // Firstly pending
+    expect(thunk.dispatch).toHaveBeenNthCalledWith(
+      1,
+      fetchUsersList.pending(expect.any(String), undefined),
+    )
+    // Then fulfilled
+    expect(thunk.dispatch).toHaveBeenNthCalledWith(
+      2,
+      fetchUsersList.fulfilled(
+        returnData as FetchUsersListResponse,
+        expect.any(String),
+        undefined,
+      ),
+    )
+    // Check result
     expect(result.payload).toEqual(returnData)
   })
 
-  test('fetching with error fetchUsersList.test', async () => {
+  test('fetchUsersList.test with error ', async () => {
+    // Mock state
     const state: DeepPartial<StateSchema> = {
       usersList: {
         selectedUser: undefined,
@@ -173,40 +169,35 @@ describe('fetchUsersList.test', () => {
         entities: {},
       },
     }
+    // Mock asynk thunk
     const thunk = new TestAsyncThunk(fetchUsersList, state)
-
-    thunk.api.get.mockReturnValue(Promise.reject(new Error()))
+    // Mock api response
+    // thunk.api.get.mockReturnValue(Promise.reject(new Error()))
+    thunk.api.get.mockReturnValue(Promise.resolve({ status: 403 }))
 
     const result = await thunk.callThunk()
-
-    expect(thunk.dispatch).toBeCalledTimes(2)
-    expect(thunk.dispatch).toHaveBeenNthCalledWith(1, {
-      type: 'usersList/fetchUsersList/pending',
-      payload: undefined,
-      meta: {
-        arg: undefined,
-        requestId: expect.any(String),
-        requestStatus: 'pending',
-      },
-    })
-    expect(thunk.dispatch).toHaveBeenNthCalledWith(2, {
-      type: 'usersList/fetchUsersList/rejected',
-      payload: 'Error while fetching users list',
-      error: {
-        message: 'Rejected',
-      },
-      meta: {
-        arg: undefined,
-        aborted: false,
-        condition: false,
-        rejectedWithValue: true,
-        requestId: expect.any(String),
-        requestStatus: 'rejected',
-      },
-    })
-
+    // Check api call
     expect(thunk.api.get).toHaveBeenCalled()
-    expect(result.meta.requestStatus).toEqual('rejected')
+    // Check dispatch calls
+    expect(thunk.dispatch).toBeCalledTimes(2)
+    // Firstly pending
+    expect(thunk.dispatch).toHaveBeenNthCalledWith(
+      1,
+      fetchUsersList.pending(expect.any(String), undefined),
+    )
+    // Then rejected
+    expect(thunk.dispatch).toHaveBeenNthCalledWith(
+      2,
+      fetchUsersList.rejected(
+        {
+          message: 'Rejected',
+        } as Error,
+        expect.any(String),
+        undefined,
+        'Error while fetching users list',
+      ),
+    )
+    // Check result
     expect(result.payload).toEqual('Error while fetching users list')
   })
 })
