@@ -1,4 +1,5 @@
 import { StateSchema } from 'app/providers/StoreProvider'
+import { Transaction } from 'entities/Transaction'
 import { TestAsyncThunk } from 'shared/lib/test/TestAsynkThunk/TestAsyncThunk'
 
 import { fetchUserTransactions } from './fetchUserTransactions'
@@ -63,7 +64,7 @@ const returnedData = [
 ]
 
 describe('fetchUserTransactions.test', () => {
-  test('Simple fetchUserTransactions.test', async () => {
+  test('fetchUserTransactions.test successful', async () => {
     const state: DeepPartial<StateSchema> = {
       userTransactions: {
         isLoading: false,
@@ -84,25 +85,22 @@ describe('fetchUserTransactions.test', () => {
 
     expect(thunk.api.get).toHaveBeenCalled()
     expect(thunk.dispatch).toBeCalledTimes(2)
-    expect(thunk.dispatch).toHaveBeenNthCalledWith(1, {
-      type: 'userTransactions/fetchUserTransactions/pending',
-      payload: undefined,
-      meta: {
-        arg: { userId: 'f2a7d21f-bd3b-4885-89fb-c939cfac33ee' },
-        requestId: expect.any(String),
-        requestStatus: 'pending',
-      },
-    })
-    expect(thunk.dispatch).toHaveBeenNthCalledWith(2, {
-      type: 'userTransactions/fetchUserTransactions/fulfilled',
-      payload: returnedData,
-      meta: {
-        arg: { userId: 'f2a7d21f-bd3b-4885-89fb-c939cfac33ee' },
-        requestId: expect.any(String),
-        requestStatus: 'fulfilled',
-      },
-    })
-
+    expect(thunk.dispatch).toHaveBeenNthCalledWith(
+      1,
+      fetchUserTransactions.pending(expect.any(String), {
+        userId: 'f2a7d21f-bd3b-4885-89fb-c939cfac33ee',
+      }),
+    )
+    expect(thunk.dispatch).toHaveBeenNthCalledWith(
+      2,
+      fetchUserTransactions.fulfilled(
+        returnedData as Transaction[],
+        expect.any(String),
+        {
+          userId: 'f2a7d21f-bd3b-4885-89fb-c939cfac33ee',
+        },
+      ),
+    )
     expect(result.payload).toEqual(returnedData)
   })
 
@@ -119,7 +117,7 @@ describe('fetchUserTransactions.test', () => {
 
     const thunk = new TestAsyncThunk(fetchUserTransactions, state)
 
-    thunk.api.get.mockReturnValue(Promise.reject(new Error('Test error')))
+    thunk.api.get.mockReturnValue(Promise.resolve({ status: 403 }))
 
     const result = await thunk.callThunk({
       userId: 'f2a7d21f-bd3b-4885-89fb-c939cfac33ee',
@@ -127,29 +125,23 @@ describe('fetchUserTransactions.test', () => {
 
     expect(thunk.api.get).toHaveBeenCalled()
     expect(thunk.dispatch).toBeCalledTimes(2)
-    expect(thunk.dispatch).toHaveBeenNthCalledWith(1, {
-      type: 'userTransactions/fetchUserTransactions/pending',
-      payload: undefined,
-      meta: {
-        arg: { userId: 'f2a7d21f-bd3b-4885-89fb-c939cfac33ee' },
-        requestId: expect.any(String),
-        requestStatus: 'pending',
-      },
-    })
-    expect(thunk.dispatch).toHaveBeenNthCalledWith(2, {
-      type: 'userTransactions/fetchUserTransactions/rejected',
-      payload: 'Error while fetching user transactions',
-      error: { message: 'Rejected' },
-      meta: {
-        aborted: false,
-        condition: false,
-        rejectedWithValue: true,
-        arg: { userId: 'f2a7d21f-bd3b-4885-89fb-c939cfac33ee' },
-        requestId: expect.any(String),
-        requestStatus: 'rejected',
-      },
-    })
-
+    expect(thunk.dispatch).toHaveBeenNthCalledWith(
+      1,
+      fetchUserTransactions.pending(expect.any(String), {
+        userId: 'f2a7d21f-bd3b-4885-89fb-c939cfac33ee',
+      }),
+    )
+    expect(thunk.dispatch).toHaveBeenNthCalledWith(
+      2,
+      fetchUserTransactions.rejected(
+        expect.any(Error('Rejected')),
+        expect.any(String),
+        {
+          userId: 'f2a7d21f-bd3b-4885-89fb-c939cfac33ee',
+        },
+        'Error while fetching user transactions',
+      ),
+    )
     expect(result.payload).toEqual('Error while fetching user transactions')
   })
 })
