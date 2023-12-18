@@ -1,11 +1,7 @@
-import {
-  FC, memo, useCallback, useMemo,
-} from 'react'
+import { FC, memo, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 
-// eslint-disable-next-line import/no-cycle
-import { fetchUsersList } from 'features/FetchUsersList'
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
+import { CURRENCY_POSTFIX } from 'shared/consts/common'
 import { classNames } from 'shared/lib/utils/classNames/classNames'
 import { SortDirection } from 'shared/types/common'
 import { List, ListColumnTitle, ListElement } from 'shared/ui/List'
@@ -13,30 +9,19 @@ import { List, ListColumnTitle, ListElement } from 'shared/ui/List'
 import classes from './UsersList.module.scss'
 import { getUsersList } from '../../model/selectors/getUsersList/getUsersList'
 import { getUsersListOrder } from '../../model/selectors/getUsersListOrder/getUsersListOrder'
-import { usersListActions } from '../../model/slices/usersListSlice'
 import { UsersListOrder } from '../../model/types/usersListSchema'
 
 interface UsersListProps {
   onUserClick?: (userId: string) => void
+  onSortToggle?: () => void
   className?: string
 }
 
 export const UsersList: FC<UsersListProps> = memo((props) => {
-  const { onUserClick, className } = props
-  const dispatch = useAppDispatch()
+  const { onUserClick, onSortToggle, className } = props
 
   const users = useSelector(getUsersList.selectAll)
   const order = useSelector(getUsersListOrder)
-
-  const onSortToggle = useCallback(() => {
-    dispatch(usersListActions.setCurrentPageNumber(1))
-    dispatch(
-      usersListActions.setListOrder(
-        order === UsersListOrder.DESC ? UsersListOrder.ASC : UsersListOrder.DESC,
-      ),
-    )
-    dispatch(fetchUsersList())
-  }, [dispatch, order])
 
   const listColumnTitles = useMemo<ListColumnTitle[]>(
     () => [
@@ -70,22 +55,23 @@ export const UsersList: FC<UsersListProps> = memo((props) => {
   )
 
   const listElements = useMemo<ListElement[]>(
-    () => users.map((user) => {
-      const plan = user.subscription.plan.type.slice(0, 1).toLocaleUpperCase()
+    () =>
+      users.map((user) => {
+        const plan = user.subscription.plan.type.slice(0, 1).toLocaleUpperCase()
           + user.subscription.plan.type.slice(1).toLocaleLowerCase()
-      const tokens = `${user.subscription.tokens} TKN`
+        const tokens = `${user.subscription.tokens} ${CURRENCY_POSTFIX}`
 
-      return {
-        id: user.id,
-        content: [
-          { value: user.email },
-          { value: user.name },
-          { value: user.role },
-          { value: plan },
-          { value: tokens },
-        ],
-      }
-    }),
+        return {
+          id: user.id,
+          content: [
+            { value: user.email },
+            { value: user.name },
+            { value: user.role },
+            { value: plan },
+            { value: tokens },
+          ],
+        }
+      }),
     [users],
   )
 

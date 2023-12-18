@@ -56,6 +56,14 @@ export const Users: FC<UsersProps> = memo((props) => {
     [dispatch],
   )
 
+  const onSortToggle = useCallback(() => {
+    dispatch(usersListActions.setCurrentPageNumber(1))
+    dispatch(
+      usersListActions.toggleListOrder(),
+    )
+    dispatch(fetchUsersList())
+  }, [dispatch])
+
   if (error) {
     return null
   }
@@ -74,7 +82,11 @@ export const Users: FC<UsersProps> = memo((props) => {
         value={search}
         onChange={onSearchChange}
       />
-      <UsersList className={classes.UsersList} onUserClick={onUserClick} />
+      <UsersList
+        className={classes.UsersList}
+        onUserClick={onUserClick}
+        onSortToggle={onSortToggle}
+      />
       <Pagination
         className={classes.UsersListPagination}
         currentPage={currentPageNumber}
