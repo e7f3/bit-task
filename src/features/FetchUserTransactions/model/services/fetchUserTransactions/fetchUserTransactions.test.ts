@@ -65,6 +65,7 @@ const returnedData = [
 
 describe('fetchUserTransactions.test', () => {
   test('fetchUserTransactions.test successful', async () => {
+    // Mock state
     const state: DeepPartial<StateSchema> = {
       userTransactions: {
         isLoading: false,
@@ -74,23 +75,26 @@ describe('fetchUserTransactions.test', () => {
         entities: {},
       },
     }
-
+    // Mock asynk thunk
     const thunk = new TestAsyncThunk(fetchUserTransactions, state)
-
+    // Mock api response
     thunk.api.get.mockReturnValue(Promise.resolve({ data: returnedData }))
 
     const result = await thunk.callThunk({
       userId: 'f2a7d21f-bd3b-4885-89fb-c939cfac33ee',
     })
-
+    // Check api call
     expect(thunk.api.get).toHaveBeenCalled()
+    // Check dispatch calls
     expect(thunk.dispatch).toBeCalledTimes(2)
+    // Firstly pending
     expect(thunk.dispatch).toHaveBeenNthCalledWith(
       1,
       fetchUserTransactions.pending(expect.any(String), {
         userId: 'f2a7d21f-bd3b-4885-89fb-c939cfac33ee',
       }),
     )
+    // Then fulfilled
     expect(thunk.dispatch).toHaveBeenNthCalledWith(
       2,
       fetchUserTransactions.fulfilled(
@@ -101,10 +105,12 @@ describe('fetchUserTransactions.test', () => {
         },
       ),
     )
+    // Check result
     expect(result.payload).toEqual(returnedData)
   })
 
   test('fetchUserTransactions.test with error', async () => {
+    // Mock state
     const state: DeepPartial<StateSchema> = {
       userTransactions: {
         isLoading: false,
@@ -114,23 +120,26 @@ describe('fetchUserTransactions.test', () => {
         entities: {},
       },
     }
-
+    // Mock asynk thunk
     const thunk = new TestAsyncThunk(fetchUserTransactions, state)
-
+    // Mock api response
     thunk.api.get.mockReturnValue(Promise.resolve({ status: 403 }))
 
     const result = await thunk.callThunk({
       userId: 'f2a7d21f-bd3b-4885-89fb-c939cfac33ee',
     })
-
+    // Check api call
     expect(thunk.api.get).toHaveBeenCalled()
+    // Check dispatch calls
     expect(thunk.dispatch).toBeCalledTimes(2)
+    // Firstly pending
     expect(thunk.dispatch).toHaveBeenNthCalledWith(
       1,
       fetchUserTransactions.pending(expect.any(String), {
         userId: 'f2a7d21f-bd3b-4885-89fb-c939cfac33ee',
       }),
     )
+    // Then rejected
     expect(thunk.dispatch).toHaveBeenNthCalledWith(
       2,
       fetchUserTransactions.rejected(
@@ -144,6 +153,7 @@ describe('fetchUserTransactions.test', () => {
         'Error while fetching user transactions',
       ),
     )
+    // Check result
     expect(result.payload).toEqual('Error while fetching user transactions')
   })
 })
