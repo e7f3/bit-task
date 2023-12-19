@@ -35,7 +35,7 @@ export const ListHead: FC<ListHeadProps> = memo((props) => {
     [classes.shrink]: doShrink,
   }
   return (
-    <div className={classNames(classes.ListHead, mods, [])}>
+    <div className={classNames(classes.ListHead, mods, [])} data-testid='list-head'>
       {columnTitles.map((title) => (
         <div key={title.id} className={classes.Title}>
           <Text
@@ -59,7 +59,7 @@ export const ListHead: FC<ListHeadProps> = memo((props) => {
         </div>
       ))}
       {hasControls && (
-        <div className={classes.Title}>
+        <div className={classes.Title} data-testid='list-head-controls'>
           <Text
             className={classes.TitleText}
             variant={TextVariant.BODY_S_MEDIUM}
