@@ -43,8 +43,22 @@ export const Transactions: FC<TransactionsProps> = memo((props) => {
     }
   }, [dispatch, user])
 
-  if (!isOpen || !user || error) {
+  if (!isOpen || !user) {
     return null
+  }
+
+  if (error) {
+    return (
+      <DynamicReducerLoader reducers={reducers} removeAfterUnmount>
+        <SideDrawer
+          className={classes.Drawer}
+          isOpen={isOpen}
+          onClose={onClose}
+        >
+          <Text variant={TextVariant.BODY_XL_SEMIBOLD}>{error}</Text>
+        </SideDrawer>
+      </DynamicReducerLoader>
+    )
   }
 
   return (

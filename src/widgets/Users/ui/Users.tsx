@@ -65,7 +65,13 @@ export const Users: FC<UsersProps> = memo((props) => {
   }, [dispatch])
 
   if (error) {
-    return null
+    return (
+      <div className={classes.Users}>
+        <Text variant={TextVariant.BODY_XL_SEMIBOLD}>
+          {error}
+        </Text>
+      </div>
+    )
   }
 
   if (isLoading) {

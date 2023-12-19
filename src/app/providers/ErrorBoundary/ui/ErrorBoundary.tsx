@@ -1,5 +1,7 @@
 import React, { ErrorInfo, ReactNode, Suspense } from 'react'
 
+import { Spinner } from 'shared/ui/Spinner/Spinner'
+
 interface ErrorBoundryProps {
   children: ReactNode
 }
@@ -30,7 +32,7 @@ class ErrorBoundary extends React.Component<
     const { children } = this.props
     if (hasError) {
       return (
-        <Suspense fallback=''>
+        <Suspense fallback={<Spinner />}>
           <div>An error occured. Please try again later.</div>
         </Suspense>
       )

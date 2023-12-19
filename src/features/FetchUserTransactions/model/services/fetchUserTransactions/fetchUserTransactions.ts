@@ -23,7 +23,7 @@ export const fetchUserTransactions = createAsyncThunk<Transaction[], FetchUserTr
       return response.data
     } catch (error) {
       // console.log(error)
-      return thunkApi.rejectWithValue('Error while fetching user transactions')
+      return thunkApi.rejectWithValue('Произошла ошибка при загрузке списка транзакций')
     }
   },
 )
