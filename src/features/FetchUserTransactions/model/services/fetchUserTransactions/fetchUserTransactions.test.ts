@@ -150,10 +150,10 @@ describe('fetchUserTransactions.test', () => {
         {
           userId: 'f2a7d21f-bd3b-4885-89fb-c939cfac33ee',
         },
-        'Error while fetching user transactions',
+        'Произошла ошибка при загрузке списка транзакций',
       ),
     )
     // Check result
-    expect(result.payload).toEqual('Error while fetching user transactions')
+    expect(result.payload).toEqual('Произошла ошибка при загрузке списка транзакций')
   })
 })

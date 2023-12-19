@@ -194,10 +194,10 @@ describe('fetchUsersList.test', () => {
         } as Error,
         expect.any(String),
         undefined,
-        'Error while fetching users list',
+        'Произошла ошибка при загрузке списка пользователей',
       ),
     )
     // Check result
-    expect(result.payload).toEqual('Error while fetching users list')
+    expect(result.payload).toEqual('Произошла ошибка при загрузке списка пользователей')
   })
 })
