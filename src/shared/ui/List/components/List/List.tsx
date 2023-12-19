@@ -53,7 +53,7 @@ export const List: FC<ListProps> = memo((props) => {
   }
 
   return (
-    <ul className={classNames(classes.List, mods, [className])}>
+    <ul className={classNames(classes.List, mods, [className])} data-testid='list'>
       {columnTitles && (
         <ListHead
           columnTitles={columnTitles}
