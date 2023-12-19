@@ -58,9 +58,10 @@ export const ListItem: FC<ListItemProps> = memo((props) => {
     <li
       className={classNames(classes.ListItem, mods, [])}
       onClick={onClick}
+      data-testid='list-item'
     >
       {element.content.map((content) => (
-        <div key={content.value} className={classes.ListItemContent}>
+        <div key={content.value} className={classes.ListItemContent} data-testid='list-item-content'>
           <Text
             className={classNames(
               classes.ListText,
@@ -74,7 +75,7 @@ export const ListItem: FC<ListItemProps> = memo((props) => {
         </div>
       ))}
       {hasControls && (
-        <div className={classes.ListItemContent}>
+        <div className={classes.ListItemContent} data-testid='list-item-controls'>
           <Button onClick={onEdit} variant={ButtonVariant.IMAGE}>
             <Icon icon={EditIcon} />
           </Button>
