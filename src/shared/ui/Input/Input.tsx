@@ -57,7 +57,7 @@ export const Input: FC<InputProps> = (props) => {
   return (
     <div className={className}>
       {label && (
-        <label className={classes.Label} htmlFor={labelId}>
+        <label className={classes.Label} htmlFor={labelId} data-testid='input-label'>
           {label}
         </label>
       )}
@@ -73,10 +73,11 @@ export const Input: FC<InputProps> = (props) => {
         {Badge && (
           <Badge
             className={classNames(classes.Badge, {}, [classes[badgePosition]])}
+            data-testid='input-badge'
           />
         )}
       </div>
-      {hasError && <span className={classes.ErrorText}>{errorText}</span>}
+      {hasError && <span className={classes.ErrorText} data-testid='input-error'>{errorText}</span>}
     </div>
   )
 }
