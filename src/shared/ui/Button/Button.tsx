@@ -50,6 +50,7 @@ export const Button: FC<ButtonProps> = memo((props) => {
         className,
       ])}
       type='button'
+      data-testid='button'
       {...rest}
     >
       {children}
