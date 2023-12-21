@@ -76,7 +76,7 @@ export const UsersList: FC<UsersListProps> = memo((props) => {
   )
 
   return (
-    <div className={classNames(classes.UsersListWrapper, {}, [className])}>
+    <div className={classNames(classes.UsersListWrapper, {}, [className])} data-testid='users-list'>
       <List
         className={classes.UsersList}
         elements={listElements}
