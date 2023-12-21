@@ -73,7 +73,7 @@ export const UserTransactions: FC<UserTransactionsProps> = memo((props) => {
   )
 
   return (
-    <div className={classNames(classes.UserTransactions, {}, [className])}>
+    <div className={classNames(classes.UserTransactions, {}, [className])} data-testid='user-transactions'>
       <List
         className={classes.TransactionsList}
         elements={listElements}
