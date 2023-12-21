@@ -70,7 +70,6 @@ describe('fetchUserTransactions.test', () => {
       userTransactions: {
         isLoading: false,
         error: undefined,
-        userBalance: undefined,
         ids: [],
         entities: {},
       },
@@ -115,7 +114,6 @@ describe('fetchUserTransactions.test', () => {
       userTransactions: {
         isLoading: false,
         error: undefined,
-        userBalance: undefined,
         ids: [],
         entities: {},
       },

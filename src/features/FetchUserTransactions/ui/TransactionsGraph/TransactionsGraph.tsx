@@ -43,7 +43,7 @@ export const TransactionsGraph: FC<TransactionsGraphProps> = memo((props) => {
   )
 
   return (
-    <div className={classNames(classes.TransactionsGraph, {}, [className])}>
+    <div className={classNames(classes.TransactionsGraph, {}, [className])} data-testid='transactions-graph'>
       <Graph data={graphData} legend={legendContent} curveName={name} />
     </div>
   )

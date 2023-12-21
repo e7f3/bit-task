@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react'
 import { Transaction } from 'entities/Transaction'
 import { componentRender } from 'shared/lib/test/renderWithStore/renderWithStore'
 
-import { UserTransactions } from './UserTransactions'
+import { TransactionsGraph } from './TransactionsGraph'
 import { userTransactionsReducer } from '../../model/slices/userTransactionsSlice'
 
 const entities = {
@@ -72,51 +72,28 @@ const ids = [
   '5ebec6b4-1f85-49c5-85ef-729ff1adecdb',
 ]
 
-describe('UserTransactions.test', () => {
-  test('Simple UserTransactions.test', () => {
-    componentRender(
-      <UserTransactions />,
-      {
-        initialState: {
-          userTransactions: {
-            isLoading: false,
-            error: undefined,
-            ids,
-            entities: entities as Record<string, Transaction>,
-          },
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}))
+
+describe('TransactionsGraph.test', () => {
+  test('Simple TransactionsGraph.test', () => {
+    componentRender(<TransactionsGraph currentAmount={0} name='test' />, {
+      initialState: {
+        userTransactions: {
+          ids,
+          entities: entities as Record<string, Transaction>,
+          isLoading: false,
+          error: undefined,
         },
-        asyncReducers: { userTransactions: userTransactionsReducer },
       },
-    )
-
-    const usersList = screen.getByTestId('user-transactions')
-    expect(usersList).toBeInTheDocument()
-    expect(usersList).toContainElement(screen.getByTestId('list'))
-    expect(screen.getAllByTestId('list-item')).toHaveLength(4)
-    expect(screen.getByTestId('list-head')).not.toContainElement(screen.queryByTestId('list-head-controls'))
-    expect(screen.getByTestId('list-head').children.length).toEqual(3)
-  })
-
-  test('UserTransactions.test with no transactions', () => {
-    componentRender(
-      <UserTransactions />,
-      {
-        initialState: {
-          userTransactions: {
-            isLoading: false,
-            error: undefined,
-            ids: [],
-            entities: {},
-          },
-        },
-        asyncReducers: { userTransactions: userTransactionsReducer },
+      asyncReducers: {
+        userTransactions: userTransactionsReducer,
       },
-    )
+    })
 
-    const usersList = screen.getByTestId('user-transactions')
-    const list = screen.getByTestId('list')
-    expect(usersList).toBeInTheDocument()
-    expect(usersList).toContainElement(list)
-    expect(list).not.toContainElement(screen.queryByTestId('list-item'))
+    expect(screen.getByTestId('transactions-graph')).toBeInTheDocument()
   })
 })

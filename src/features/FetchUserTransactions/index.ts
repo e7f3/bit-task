@@ -1,4 +1,3 @@
-export { getUserBalance } from './model/selectors/getUserBalance/getUserBalance'
 export { getUserTransactionsError } from './model/selectors/getUserTransactionsError/getUserTransactionsError'
 export { getUserTransactionsIsLoading } from './model/selectors/getUserTransactionsIsLoading/getUserTransactionsIsLoading'
 export { fetchUserTransactions } from './model/services/fetchUserTransactions/fetchUserTransactions'

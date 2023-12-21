@@ -13,7 +13,6 @@ import { UserTransactionsSchema } from '../types/userTransactionsSchema'
 const initialState: UserTransactionsSchema = {
   ids: [],
   entities: {},
-  userBalance: undefined,
   isLoading: false,
   error: undefined,
 }
@@ -36,9 +35,6 @@ export const userTransactionsSlice = createSlice({
       transactionsAdapter.setAll(state, action.payload)
     },
 
-    setUserBalance(state, action: PayloadAction<number>) {
-      state.userBalance = action.payload
-    },
   },
   extraReducers: (builder) => builder
     .addCase(fetchUserTransactions.pending, (state) => {

@@ -1,7 +1,15 @@
-import { Transaction, TransactionStatus, TransactionType } from 'entities/Transaction'
+import {
+  Transaction,
+  TransactionStatus,
+  TransactionType,
+} from 'entities/Transaction'
 import { Currency } from 'shared/types/common'
 
-import { transactionsAdapter, userTransactionsActions, userTransactionsReducer } from './userTransactionsSlice'
+import {
+  transactionsAdapter,
+  userTransactionsActions,
+  userTransactionsReducer,
+} from './userTransactionsSlice'
 import { UserTransactionsSchema } from '../types/userTransactionsSchema'
 
 const transactions: Transaction[] = [
@@ -36,45 +44,27 @@ const transactions: Transaction[] = [
 ]
 
 describe('userTransactions.test', () => {
-  test('userTransactions.test set balance', () => {
-    const state: DeepPartial<UserTransactionsSchema> = transactionsAdapter.getInitialState({
-      userBalance: 0,
-      isLoading: false,
-      error: undefined,
-      ids: [],
-      entities: {},
-    })
-    expect(userTransactionsReducer(state as UserTransactionsSchema, userTransactionsActions.setUserBalance(100))).toEqual(
-      {
-        userBalance: 100,
-        isLoading: false,
-        error: undefined,
-        ids: [],
-        entities: {},
-      },
-    )
-  })
-
   test('userTransactions.test set transactions', () => {
     const state: DeepPartial<UserTransactionsSchema> = transactionsAdapter.getInitialState({
-      userBalance: 0,
       isLoading: false,
       error: undefined,
       ids: [],
       entities: {},
     })
 
-    expect(userTransactionsReducer(state as UserTransactionsSchema, userTransactionsActions.transactionsReceived(transactions))).toEqual(
-      {
-        userBalance: 0,
-        isLoading: false,
-        error: undefined,
-        ids: transactions.map((transaction) => transaction.id),
-        entities: transactions.reduce((acc, transaction) => {
-          acc[transaction.id] = transaction
-          return acc
-        }, {} as Record<string, Transaction>),
-      },
-    )
+    expect(
+      userTransactionsReducer(
+        state as UserTransactionsSchema,
+        userTransactionsActions.transactionsReceived(transactions),
+      ),
+    ).toEqual({
+      isLoading: false,
+      error: undefined,
+      ids: transactions.map((transaction) => transaction.id),
+      entities: transactions.reduce((acc, transaction) => {
+        acc[transaction.id] = transaction
+        return acc
+      }, {} as Record<string, Transaction>),
+    })
   })
 })
