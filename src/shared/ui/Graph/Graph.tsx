@@ -14,7 +14,7 @@ import classes from './Graph.module.scss'
 interface GraphProps {
   curveName: string
   data: Record<string, number | string>[]
-  legend: ContentType
+  legend?: ContentType
 }
 
 export const Graph: FC<GraphProps> = memo((props) => {
@@ -28,7 +28,7 @@ export const Graph: FC<GraphProps> = memo((props) => {
     [],
   )
   return (
-    <div className={classes.Graph}>
+    <div className={classes.Graph} data-testid='graph'>
       <ResponsiveContainer width='100%' height='100%'>
         <AreaChart data={data}>
           <defs>
