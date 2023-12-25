@@ -8,7 +8,7 @@ import { Text, TextVariant } from 'shared/ui/Text/Text'
 import classes from './Header.module.scss'
 
 export const Header: FC = memo(() => (
-  <div className={classes.Header}>
+  <div className={classes.Header} data-testid='header'>
     <Text className={classes.LogoText} variant={TextVariant.BODY_XL_SEMIBOLD}>BitTest</Text>
     <div className={classes.Organization}>
       <div className={classes.OrgIconWrapper}>
