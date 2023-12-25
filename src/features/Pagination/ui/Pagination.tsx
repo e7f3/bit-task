@@ -14,6 +14,7 @@ import { calculatePageNumber } from '../lib/calculatePageNumber/calculatePageNum
 interface PaginationProps {
   totalPages: number
   currentPage: number
+  visiblePages?: number
   onPageChange: (page: number) => void
   className?: string
 }
@@ -22,7 +23,11 @@ const VISIBLE_PAGE_COUNT = 3
 
 export const Pagination: FC<PaginationProps> = memo((props) => {
   const {
-    totalPages, currentPage, onPageChange, className,
+    totalPages,
+    currentPage,
+    visiblePages = VISIBLE_PAGE_COUNT,
+    onPageChange,
+    className,
   } = props
 
   const onCLickArrowLeft = useCallback(() => {
@@ -45,51 +50,56 @@ export const Pagination: FC<PaginationProps> = memo((props) => {
   const [hasLeftEllipsis, hasRightEllipsis] = useMemo<
     [boolean, boolean]
   >(() => {
-    if (totalPages - VISIBLE_PAGE_COUNT <= 2) {
+    if (totalPages - visiblePages <= 2) {
       return [false, false]
     }
     return [
-      currentPage > VISIBLE_PAGE_COUNT,
-      totalPages - currentPage >= VISIBLE_PAGE_COUNT,
+      currentPage > visiblePages,
+      totalPages - currentPage >= visiblePages,
     ]
-  }, [currentPage, totalPages])
+  }, [currentPage, totalPages, visiblePages])
 
   const content = useMemo(
-    // Create an array of length VISIBLE_PAGE_COUNT or totalPages - first - last
-    () => Array.from(
-      {
-        length: calculateArrayLength(VISIBLE_PAGE_COUNT, totalPages),
-        // hasLeftEllipsis || hasRightEllipsis
-        //   ? VISIBLE_PAGE_COUNT
-        //   : totalPages - 2,
-      },
-      (_, index) => {
-        // Calculate the page number
-        const pageNumber = calculatePageNumber(
-          totalPages,
-          VISIBLE_PAGE_COUNT,
-          currentPage,
-          index,
-          hasLeftEllipsis,
-          hasRightEllipsis,
-        )
-        return (
-          <Button
-            key={index}
-            theme={
+    // Create an array of length visiblePages or totalPages - first - last
+    () =>
+      Array.from(
+        {
+          length: calculateArrayLength(visiblePages, totalPages),
+        },
+        (_, index) => {
+          // Calculate the page number
+          const pageNumber = calculatePageNumber(
+            totalPages,
+            visiblePages,
+            currentPage,
+            index,
+            hasLeftEllipsis,
+            hasRightEllipsis,
+          )
+          return (
+            <Button
+              key={index}
+              theme={
                 currentPage === pageNumber
                   ? ButtonTheme.PRIMARY
                   : ButtonTheme.CLEAN
               }
-            variant={ButtonVariant.NO_BORDER}
-            onClick={onPageClick(pageNumber)}
-          >
-            {pageNumber}
-          </Button>
-        )
-      },
-    ),
-    [hasLeftEllipsis, hasRightEllipsis, currentPage, onPageClick, totalPages],
+              variant={ButtonVariant.NO_BORDER}
+              onClick={onPageClick(pageNumber)}
+            >
+              {pageNumber}
+            </Button>
+          )
+        },
+      ),
+    [
+      hasLeftEllipsis,
+      hasRightEllipsis,
+      currentPage,
+      visiblePages,
+      onPageClick,
+      totalPages,
+    ],
   )
 
   if (totalPages <= 1) {
