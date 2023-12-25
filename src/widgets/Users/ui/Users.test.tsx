@@ -210,4 +210,43 @@ describe('Users.test', () => {
       ids[0],
     )
   })
+
+  test('Users.test users are loading', () => {
+    componentRender(<Users />, {
+      initialState: {
+        usersList: {
+          ids: [],
+          entities: {},
+          isLoading: true,
+          error: undefined,
+          totalPages: 1,
+          currentPage: 1,
+        },
+      },
+    })
+
+    const spinner = screen.getByTestId('spinner')
+    expect(spinner).toBeInTheDocument()
+  })
+
+  test('Users.test users error', () => {
+    componentRender(<Users />, {
+      initialState: {
+        usersList: {
+          ids: [],
+          entities: {},
+          isLoading: false,
+          error: 'Error',
+          totalPages: 1,
+          currentPage: 1,
+        },
+      },
+    })
+
+    const users = screen.getByTestId('users')
+    const errorText = screen.getByTestId('text')
+    expect(users).toBeInTheDocument()
+    expect(users).toContainElement(errorText)
+    expect(errorText).toHaveTextContent('Error')
+  })
 })
