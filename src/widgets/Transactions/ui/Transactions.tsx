@@ -65,7 +65,7 @@ export const Transactions: FC<TransactionsProps> = memo((props) => {
     <DynamicReducerLoader reducers={reducers} removeAfterUnmount>
       <SideDrawer className={classes.Drawer} isOpen={isOpen} onClose={onClose}>
         {isLoading && <Spinner className={classes.Spinner} />}
-        <div className={classes.Transactions}>
+        <div className={classes.Transactions} data-testid='transactions'>
           <div className={classes.TransactionsHead}>
             <Text variant={TextVariant.BODY_XL_SEMIBOLD}>{user.email}</Text>
           </div>
