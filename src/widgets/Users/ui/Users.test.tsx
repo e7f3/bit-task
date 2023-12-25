@@ -1,5 +1,6 @@
-import { screen } from '@testing-library/react'
+import { fireEvent, screen } from '@testing-library/react'
 
+import { StateSchema } from 'app/providers/StoreProvider'
 import { User } from 'entities/User'
 import { componentRender } from 'shared/lib/test/renderWithStore/renderWithStore'
 
@@ -115,8 +116,39 @@ const entities = {
   },
 }
 
+const initialState: DeepPartial<StateSchema> = {
+  usersList: {
+    ids,
+    entities: entities as Record<string, User>,
+    isLoading: false,
+    error: undefined,
+    selectedUser: undefined,
+    currentPage: 1,
+    totalPages: 5,
+    search: '',
+  },
+}
+
+const onUserClick = jest.fn()
+
 describe('Users.test', () => {
   test('Simple Users.test', () => {
+    componentRender(<Users />, {
+      initialState,
+    })
+
+    const users = screen.getByTestId('users')
+    const pagination = screen.getByTestId('pagination')
+    const search = screen.getByTestId('input')
+    const usersList = screen.getByTestId('users-list')
+
+    expect(users).toBeInTheDocument()
+    expect(pagination).toBeInTheDocument()
+    expect(search).toBeInTheDocument()
+    expect(usersList).toBeInTheDocument()
+  })
+
+  test('Users.test without pagination', () => {
     componentRender(<Users />, {
       initialState: {
         usersList: {
@@ -124,12 +156,58 @@ describe('Users.test', () => {
           entities: entities as Record<string, User>,
           isLoading: false,
           error: undefined,
-          selectedUser: undefined,
+          totalPages: 1,
+          currentPage: 1,
         },
       },
     })
 
     const users = screen.getByTestId('users')
+    const pagination = screen.queryByTestId('pagination')
     expect(users).toBeInTheDocument()
+    expect(pagination).toBeNull()
+  })
+
+  test('Users.test search change', () => {
+    componentRender(<Users />, {
+      initialState,
+    })
+
+    const search = screen.getByTestId('input')
+    expect(search).toBeInTheDocument()
+    expect(search).toHaveValue('')
+
+    fireEvent.change(search, { target: { value: 'test' } })
+
+    expect(search).toHaveValue('test')
+  })
+
+  test('Users.test users count', () => {
+    componentRender(<Users />, {
+      initialState,
+    })
+
+    const usersList = screen.getByTestId('users-list')
+    expect(usersList).toBeInTheDocument()
+    expect(usersList).toContainElement(screen.getByTestId('list'))
+    expect(screen.getAllByTestId('list-item')).toHaveLength(4)
+  })
+
+  test('Users.test user click', () => {
+    componentRender(<Users onUserClick={onUserClick} />, {
+      initialState,
+    })
+
+    const usersList = screen.getByTestId('users-list')
+    expect(usersList).toBeInTheDocument()
+    expect(usersList).toContainElement(screen.getByTestId('list'))
+    expect(screen.getAllByTestId('list-item')).toHaveLength(4)
+
+    fireEvent.click(screen.getAllByTestId('list-item')[0])
+
+    expect(onUserClick).toHaveBeenCalledTimes(1)
+    expect(onUserClick).toHaveBeenCalledWith(
+      ids[0],
+    )
   })
 })
