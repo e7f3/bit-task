@@ -58,18 +58,14 @@ export const Users: FC<UsersProps> = memo((props) => {
 
   const onSortToggle = useCallback(() => {
     dispatch(usersListActions.setCurrentPageNumber(1))
-    dispatch(
-      usersListActions.toggleListOrder(),
-    )
+    dispatch(usersListActions.toggleListOrder())
     dispatch(fetchUsersList())
   }, [dispatch])
 
   if (error) {
     return (
-      <div className={classes.Users}>
-        <Text variant={TextVariant.BODY_XL_SEMIBOLD}>
-          {error}
-        </Text>
+      <div className={classes.Users} data-testid='users'>
+        <Text variant={TextVariant.BODY_XL_SEMIBOLD}>{error}</Text>
       </div>
     )
   }
@@ -79,7 +75,7 @@ export const Users: FC<UsersProps> = memo((props) => {
   }
 
   return (
-    <div className={classes.Users}>
+    <div className={classes.Users} data-testid='users'>
       <Text className={classes.Title} variant={TextVariant.BODY_XL_SEMIBOLD}>
         Пользователи
       </Text>
