@@ -107,7 +107,7 @@ export const Pagination: FC<PaginationProps> = memo((props) => {
   }
 
   return (
-    <nav className={classNames(classes.Pagination, {}, [className])}>
+    <nav className={classNames(classes.Pagination, {}, [className])} data-testid='pagination'>
       <Button
         className={classes.ArrowButton}
         theme={ButtonTheme.CLEAN}
